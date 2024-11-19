@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Jobs</title>{% endblock title %}
+
+{% block content %}
+
+<style>
+      .search-padding {
+      padding: left 2.4%;
+      }
+
+      @media screen and (max-width: 765px) {
+        .search-padding {
+      padding: left 3.2%;
+      }
+      }
+
+    .article-container-fluid {
+    background-image:
+      linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%),
+      url('../static/images/6.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    height: 67vh;
+      padding: 30px 0;
+      /* padding:  93px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content at the bottom */
+  }
+  @media screen and (max-width: 768px) {
+    .article-container-fluid {
+      padding: 20px 0;
+      height: 45vh;
+    }
+  }
+
+  .article-header-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .back-btn {
+    position: absolute;
+    bottom: 6.6px;
+    right: -2%;
+    /* display: inline-block; */
+  }
+
+</style>
+
+<!-- Hero Section -->
+  <div class="article-container-fluid container-fluid pt-aut mb-5">
+  <div class="hero- container">
+    <div class="row article-header-text justify-content-between">
+      <div class="col-8">
+        <h1 class="header-text text-left">Open Positions</h1>
+        <br />
+        <span class="sub-header-text">
+          Join our team and help shape the<br />
+          future of young learners!
+        </span>
+      </div>
+      <div class="col-3">
+        <a type="button" class="btn btn-light back-btn "
+          href="{% url 'about_us' %}"
+        >
+         <svg xmlns="http://www.w3.org/2000/svg"
+          width="14" height="14" fill="currentColor"
+          class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+         </svg>
+         Back
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+    details = models.TextField(null=True, help_text='Job details')
+-->
+<div class="container-fluid mt-5 mb-3">
+    <div class="container ">
+
+   <!-- Search bar -->
+   <div class="row justify-content-between mb- g-3 form-group">
+    {% csrf_token %}
+
+     <div class="col-sm-6 col-sm- d-inline-fle my-">
+      <h6 style="padding-left: 13.3px;"><strong>Search</strong></h6>
+
+    <form method="get" action="{% url 'jobs_search' %}"
+       class="d-flex m-0 p-0 justify-content-between form-control rounded-4" role="search">
+
+      <input name="q" class="form-control border-0 bg-transparent search-bar navbar-dar" type="search" placeholder="search" aria-label="search" value="{{ request.GET.q }}">
+
+      <button class="btn" type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+          width="16" height="16" fill="currentColor" 
+          class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </button>
+
+    </form>
+
+    </div>
+
+    <div class="col-sm-6 d-inline-fle my-">
+      <h6 style="padding-left: 13.3px;"><strong>Category</strong></h6>
+
+            <!-- Category Filter Dropdown -->
+  <select name="category" class="form-select rounded-4">
+    <option value="">All</option>
+    {% for category in categories %}
+      <option value="{{ category.id }}" >
+        {{ category.category_name }}
+      </option>
+    {% endfor %}
+  </select>
+
+    </div>
+
+</div>
+        
+{% for job in jobs%}
+ <div class="row d-flex {% if not forloop.last %} border-bottom {% endif %} pt-5">
+
+            <div class="col- row d-flex align-items-end mb-3">
+                <span class="col-auto">
+                    <h2 class="mb-0">{{ job.job_title }} &nbsp;</h2>
+                </span>
+                <span class="col-auto">
+                  <small class="mb-0">Posted: {{ job.posted_on|date:"F j, Y" }}</small>
+                </span>
+            </div>
+
+      <div class="col-12 body-text">
+        <p><strong>Brief Description:</strong>&nbsp;{{ job.brief_description|linebreaks }}</p>
+      </div>
+
+      <div class="col-12 body-text pt-4">
+        <details>
+            <summary><strong>Details</strong></summary>
+            <p>{{ job.details|linebreaks }}</p>
+        </details>
+
+      </div>
+
+      <div class="row d-fle align-items-cente justify-content-between mb-5 mt-4">
+        <span class="col">
+          <button class="rounded-5 btn btn-sm disabled mb-4 mb-sm-0 me-2"
+            style="border-color: #434343 !important; color: #434343">
+             Location:&nbsp;{{ job.location }}
+         </button>
+          <button class="rounded-5 btn btn-sm disabled mb-4 mb-sm-0"
+            style="border-color: #434343 !important;  color: #434343">
+            Type:&nbsp;{{ job.job_type }}</button>
+        </span>
+        <span class="col-sm-4 mb-4 mb-sm-0 justify-content-end">
+           <a type="button" 
+           href="mailto:communication@munakalati.org?subject=Application for {{ job.job_title }}&body=Dear Hiring Team,%0D%0A%0D%0AMy name is [Your Name]. I am writing to apply for the position of {{ job.job_title }}. %0D%0A%0D%0A[Your Message Here]%0D%0A%0D%0AThank you.%0D%0A%0D%0ABest regards,%0D%0A[Your Name]"
+           class="button float-sm-end">
+           Apply Now
+        </a>
+        </span>
+
+
+         </div>
+
+   </div>
+   {% endfor %}
+    
+  </div>
+  </div>
+  {% endblock content %}
+

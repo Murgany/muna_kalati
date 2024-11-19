@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% load custom_filters static %}
+
+{% block title %}<title>{{ update.title }}</title>{% endblock title %}
+
+{% block content %}
+
+<style>
+  .article-container-fluid {
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%),
+    url('{{ update.image.url }}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  height: 70vh;
+  padding: 30px 0;
+    /* padding:  93px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align content at the bottom */
+}
+@media screen and (max-width: 768px) {
+  .article-container-fluid {
+    padding: 20px 0;
+    height: 45vh;
+  }
+}
+
+.article-header-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.back-btn {
+  position: absolute;
+  bottom: 6.6px;
+  right: -2%;
+}
+
+</style>
+
+  <!-- Hero Section -->
+  <div class="article-container-fluid container-fluid pt-aut mb-5">
+    <div class="hero- container">
+      <div class="row article-header-text justify-content-between">
+        <div class="col-8">
+          <h1 class="font-weight-bold article-header-text">{{ update.title }}</h1>
+        </div>
+        <div class="col-3">
+          <a type="button" class="btn btn-light back-btn "
+            href="{% url 'media_and_news' %}"
+          >
+           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+           class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+           </svg>
+        Back
+          </a>
+        </div>
+     </div>
+    </div>
+  </div>
+
+<main class="container">
+
+  <article class="">
+      <p class=" body-text pt-4">Date: {{ update.created|date:"F Y" }}</p>
+      <div class="body-text">
+          <p>{{ update.content|linebreaks }}</p>
+
+          {% if update.bullet_points %}
+          <h5 style="color: #3c3a36;">Details:</h5>
+
+    <ul>
+        {% for point in update.get_bullet_points %}
+            {% with point|split:":" as parts %}
+                <li>
+                    <strong>{{ parts.0 }}:</strong> {{ parts.1 }}
+                </li>
+                <br />
+            {% endwith %}
+        {% empty %}
+            <li>No bullet points available.</li>
+        {% endfor %}
+    </ul>
+          {% endif %}
+      </div>
+
+      {% if update.summary %}
+      <p class="body-text">{{ update.summary }}</p>
+      {% endif %}
+
+  </article>
+
+  <div class="mt-5 mb-4" style="background-color: #78746d; height: 1px;"></div>
+
+
+  {% if update.author %}
+  <div class="mb-5 row justify-content-betwee d-fle align-items-center">
+
+    <div class="col-3 col-sm-4 rounded-5" style="width: 70px;">
+          <img class="img-fluid rounded-5" 
+           src="{{ update.author.profile.profile_picture.url }}" alt="Author Profile Picture">
+    
+  </div>
+
+  <!-- Display Author Name and Title -->
+  <div class="col-6 col-sm-8">
+      <small>
+          <strong>{{ update.author.first_name }} {{ update.author.last_name }}</strong>
+      </small>
+      <br />
+      <small>{{ update.author.profile.title }}</small>
+  </div>
+
+    <div class="col text-end mr- pr-">
+
+        <a class="social-icon-2 float-right text-end" 
+          href="{{ update.author.profile.linkedin_url }}" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#a3a19d"
+            class="bi bi-linkedin" viewBox="0 0 16 16"
+          >
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+          </svg>
+        </a>
+
+    </div>
+  </div>  
+  {% else %}
+  <div class="mb-5"></div>
+  {% endif %}
+
+
+<!-- Related Content -->
+  <section class="related-articles">
+      <h2>Related Articles</h2>
+<div class="row justify-content-between row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+  {% if recommendations %}
+  {% for rec_blog in recommendations %}
+
+    <div class="card h-100 border-0">
+      <img src="{{ rec_blog.image.url }}"
+          class="card-img-top img-fluid custom-im rounded-3" alt="...">
+      <div class="card-body px-0">
+        <h4 class="">{{ rec_blog.title|truncatewords:7 }}</h4>
+        <a href="{% url 'latest_update_detail' rec_blog.pk %}" class="read-more-link">
+          {{ rec_blog.category }} ·<span class="body-text">{{ update.reading_duration }} read</span>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+  {% else %}
+  <p>No similar articles available.</p>
+  {% endif %}
+
+</div>
+
+  </section>
+</main>
+
+{% endblock content %}

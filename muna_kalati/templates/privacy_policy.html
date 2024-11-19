@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Privacy Policy</title>{% endblock title %}
+
+{% block content %}
+
+
+  <style>
+    .rounded-4 {
+  border-radius: 10px !important;
+}
+
+.media-container-fluid {
+  background-image: 
+    linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%),
+    url("../static/images/7.jpg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 60vh; /* Default height for larger screens */
+  padding: 150px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .media-container-fluid {
+    height: 40vh; /* Adjust height for tablets and smaller screens */
+    padding: 80px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .media-container-fluid {
+    height: 36vh; /* Further adjust height for very small screens */
+    padding: 70px 0;
+  }
+}
+
+
+ol li {
+  margin-bottom: 12px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+ol li a{
+  color: #78746d;
+}
+
+ol li a:hover {
+  /* margin-bottom: 15px; */
+  color: #ed552a;
+}
+
+p {
+  margin-bottom: 25px;
+  margin-left: 22px;
+}
+  </style>
+
+<!-- Hero Section -->
+<div class="media-container-fluid container-fluid pt-auto mb-4 ">
+  <!-- <div class="overlay"></div> -->
+  <div class="hero- container my-">
+    <h1 class="header-text text-left">
+     Privacy Policy
+    </h1>
+    <br>
+    <span class="sub-header-text">  
+     Effective Date: 30th August 2024
+    </span>
+  </div>
+</div>
+
+<div class="container body-text">
+
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="body-text" href="{% url 'index' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page" style="color: #ed552a;">Privacy Policy</li>
+    </ol>
+  </nav>
+
+<div class="row mb-5 mt-4">
+
+    <div class="col">
+    <h4>Table of Contents</h4>
+    <ol>
+        <li><a href="#data-collection">Data Collection</a></li>
+        <li><a href="#parental-consent">Parental Consent</a></li>
+        <li><a href="#data-security">Data Security</a></li>
+        <li><a href="#data-usage">Data Usage</a></li>
+        <li><a href="#data-sharing">Data Sharing</a></li>
+        <li><a href="#data-retention">Data Retention</a></li>
+        <li><a href="#data-protection">Data Protection</a></li>
+        <li><a href="#parental-rights">Parental Rights</a></li>
+        <li><a href="#data-breach">Data Breach</a></li>
+        <li><a href="#privacy-policy">Privacy Policy</a></li>
+        <li><a href="#age-appropriate">Age-Appropriate</a></li>
+        <li><a href="#compliance">Compliance</a></li>
+    </ol>
+
+    <h4 class="mt-5">Introduction</h4>
+    <p class="ms-0">Welcome to Muna Kalati! Your privacy is important to us. 
+        This Privacy Policy explains how we collect, use, and protect your personal 
+        information when you use our app. We encourage you to read this policy 
+        carefully and contact us if you have any questions.
+    </p>
+
+    <h4 id="data-collection">1. Data Collection</h4>
+    <p>We collect limited personal information from children, such as name, age, and username.</p>
+
+    <h4 id="parental-consent">2. Parental Consent</h4>
+    <p>We require parental consent before collecting or processing personal information from children.</p>
+
+    <h4 id="data-security">3. Data Security</h4>
+    <p>We use encryption and secure servers to protect personal information and ensure it is not accessible to unauthorized third parties.</p> 
+    
+    <h4 id="data-usage">4. Data Usage</h4>
+    <p>We use personal information solely for app improvement, personalized recommendations, and progress tracking.</p> 
+    
+    <h4 id="data-sharing">5. Data Sharing</h4>
+    <p>We do not share personal information with third-party companies or organizations, except for legal or regulatory purposes.</p> 
+    
+    <h4 id="data-retention">6. Data Retention</h4>
+    <p>We retain personal information only for as long as necessary to provide services or as required by law.</p> 
+    
+    <h4 id="data-protection">7. Data Protection</h4>
+    <p>We comply with applicable data protection regulations, including the Children's Online Privacy Protection Act (COPPA) and the General Data Protection Regulation (GDPR).</p> 
+    
+    <h4 id="parental-rights">8. Parental Rights</h4>
+    <p>Parents have the right to review, update, or delete their child's personal information upon request.</p> 
+    
+    <h4 id="data-breach">9. Data Breach</h4>
+    <p>Parents have the right to review, update, or delete their child's personal information upon request.</p> 
+    
+    <h4 id="privacy-policy">10. Privacy Policy</h4>
+    <p>We provide a clear and transparent privacy policy explaining our data collection, use, and protection practices.</p> 
+    
+    <h4 id="age-appropriate">11. Age-Appropriate</h4>
+    <p>Our app is designed for children aged 4-12, and we ensure our data collection and processing practices are age-appropriate.</p> 
+    
+    <h4 id="compliance">12. Compliance</h4>
+    <p>We comply with local and international data protection regulations, including the African Union's data protection guidelines.</p>
+
+</div>
+</div>
+
+</div>
+
+
+{% endblock content %}
+
+{% block footer %} {% include "footer.html" %} {% endblock footer %}
+

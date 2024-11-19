@@ -1,0 +1,313 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+   {% block title %} <title>Latest Updates</title> {% endblock title %}
+<style>
+  .article-container-fluid {
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%),
+    url("../static/images/4.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  height: 67vh;
+    padding: 30px 0;
+    /* padding:  93px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align content at the bottom */
+}
+@media screen and (max-width: 768px) {
+  .article-container-fluid {
+    padding: 20px 0;
+    height: 45vh;
+  }
+}
+
+.article-header-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.back-btn {
+  position: absolute;
+  bottom: 6.6px;
+  right: -2%;
+}
+
+    </style>
+
+  <!-- Hero Section -->
+  <div class="article-container-fluid container-fluid pt-aut mb-5">
+    <div class="hero- container">
+      <div class="row article-header-text justify-content-between">
+        <div class="col-8">
+          <h1 class="font-weight-bold article-header-tex">Latest Updates</h1>
+          <br/>
+          <span class="sub-header-text">
+            Stay informed with our most recent news, articles, and announcements.
+          </span>
+        </div>
+
+        <div class="col-3">
+          <a type="button" class="btn btn-light back-btn "
+            href="{% url 'media_and_news' %}"
+          >
+           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+           class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+           </svg>
+        Back
+          </a>
+        </div>
+     </div>
+    </div>
+  </div>
+
+<style>
+.search {
+  padding-left: 2.1%;
+}
+
+/* Medium screens (Tablets) */
+@media (max-width: 1024px) {
+  .search {
+  padding-left: 3%;
+}
+}
+
+/* Small screens (Mobile) */
+@media (max-width: 768px) {
+  .search {
+  padding-left: 2.2%;
+}
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .search {
+  padding-left: 3.9%;
+}
+}
+
+
+.search-2 {
+  padding-left: 6%;
+}
+
+/* Medium screens (Tablets) */
+@media (max-width: 1024px) {
+  .search-2 {
+  padding-left: 8%;
+}
+}
+
+/* Small screens (Mobile) */
+@media (max-width: 768px) {
+  .search-2 {
+  padding-left: 5%;
+}
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .search-2 {
+  padding-left: 9.3%;
+}
+}
+
+    .media-container-fluid {
+      background-image:
+        linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%),
+        url("../static/images/4.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 60vh; /* Default height for larger screens */
+      padding: 150px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    @media screen and (max-width: 768px) {
+      .media-container-fluid {
+        height: 40vh; /* Adjust height for tablets and smaller screens */
+        padding: 80px 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .media-container-fluid {
+        height: 36vh; /* Further adjust height for very small screens */
+        padding: 70px 0;
+      }
+    }
+
+    /* .form-control:focus {
+      border: none;
+      box-shadow: none;
+    } */
+</style>
+    
+    <section class="container my-5">
+
+    <!-- Search bar -->
+      <div class="row justify-content-between mb-5 g-3 form-group">
+          {% csrf_token %}
+
+        <div class="col-12 col-md-6">
+          <h6 class="search"><strong>Search</strong></h6>
+
+          <form method="get" action="{% url 'updates_search' %}"
+            class="d-flex m-0 p-0 justify-content-between form-control" role="search">
+
+            <input name="q" 
+              class="form-control border-0 bg-transparent search-bar navbar-dar" 
+              type="search" placeholder="search" 
+              aria-label="search" value="{{ request.GET.q }}"
+            >
+
+            <button class="btn" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </button>
+
+          </form>
+
+        </div>
+
+        <div class="col-6 col-md-3 d-inline-fle my-">
+          <h6 class="search-2 body-text"><strong>Category</strong></h6>
+
+<select name="category" class="form-select me-2">
+  <option class="body-text" value="">All Categories</option>
+  {% for category in categories %}
+ <option class="body-text" 
+   value="{{ category.id }}" {% if category.id|stringformat:"s" == selected_category %}selected{% endif %}>
+      {{ category.category_name }}
+      </option>
+  {% endfor %}
+</select>
+
+
+        </div>
+
+          <div class="col-6 col-md-3">
+            <h6 class="search-2 body-text"><strong>Sort</strong></h6>
+            <select name="sort" class="form-select me-2">
+              <option value="">Sort by</option>
+              <option value="-created" {% if request.GET.sort == "-created" %}selected{% endif %}>Newest</option>
+              <option value="created" {% if request.GET.sort == "created" %}selected{% endif %}>Oldest</option>
+              <option value="title" {% if request.GET.sort == "title" %}selected{% endif %}>Title A-Z</option>
+              <option value="-title" {% if request.GET.sort == "-title" %}selected{% endif %}>Title Z-A</option>
+            </select>
+          </div>
+
+      </div>
+
+<!-- Latest Updates -->
+<div class="row justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+
+  {% for update in latest_updates %}
+    <div class="card h-100 border-0">
+      <a href="{% url 'latest_update_detail' update.pk %}" class="read-more-link">
+       <img src="{{ update.image.url }}"
+          class="card-img-top img-fluid custom-im rounded-3" alt="...">
+      </a>
+      <div class="card-body px-0">
+        <h4 class="">{{ update.title|truncatewords:7 }}</h4>
+        <p class="card-text  p- m-">{{ update.content|truncatewords:20 }}</p>
+        <a href="{% url 'latest_update_detail' update.pk %}" class="read-more-link">
+          {{ update.category }} ·<span class="body-text">{{ update.reading_duration }} read</span>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+
+<style>
+.pagination .page-item.active .page-link {
+  background-color: #fff; /* Set the background color */
+  border-color: #08629e; /* Set the border color */
+  color: #08629e; /* Set the text color */
+}
+
+.pagination .page-item .page-link {
+  margin-right: 10px;
+  border-radius: 5px;
+  color: #78746d;
+}
+</style>
+
+<div class="pagination-container d-flex justify-content-center mt-4">
+  {% if is_paginated %}
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a href="?page=1" class="page-link">«</a>
+        </li>
+        <li class="page-item">
+          <a href="?page={{ page_obj.previous_page_number }}" class="page-link">‹</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a href="#" class="page-link disabled">«</a>
+        </li>
+        <li class="page-item disabled">
+          <a href="#" class="page-link disabled">‹</a>
+        </li>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+          <li class="page-item active">
+            <a href="?page={{ num }}" class="page-link">{{ num }}</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a href="?page={{ num }}" class="page-link">{{ num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a href="?page={{ page_obj.next_page_number }}" class="page-link">›</a>
+        </li>
+        <li class="page-item">
+          <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">»</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a href="#" class="page-link disabled">›</a>
+        </li>
+        <li class="page-item disabled">
+          <a href="#" class="page-link disabled">»</a>
+        </li>
+      {% endif %}
+    </ul>
+  {% endif %}
+</div>
+
+
+
+    </section>
+
+    {% endblock %}
+
+    {% block footer %} {% include "footer.html" %} {% endblock %}
+

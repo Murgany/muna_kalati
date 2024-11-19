@@ -1,0 +1,454 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block title %}{% endblock title %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+  </head>
+  <body>
+
+    {% block header %}
+
+    <nav class="navbar navbar-expand-md py-3 navbar-dar ">
+      <div class="container navigation-bar ml-5 mr-0">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img
+              class="vector-"
+              src="{% static 'images/muna-kalati-logo.svg' %}"
+            />
+        </a>
+
+        <button
+          class="custom-toggler navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon c" style="color: #08629e"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav text-right ms-auto">
+            <li class="nav-item links-">
+              <a
+                class="nav-link activ home-"
+                aria-current="page"
+                href="{% url 'index' %}"
+                >Home
+              </a>
+            </li>
+            <li class="nav-item links-">
+              <a class="nav-link features-" href="{% url 'features' %}">Features</a>
+            </li>
+            <li class="nav-item links-">
+              <a class="nav-link media-news-" href="{% url 'media_and_news' %}"
+                >Media & News</a
+              >
+            </li>
+            <li class="nav-item links-">
+              <a class="nav-link about-" href="{% url 'about_us' %}">About</a>
+            </li>
+          
+            <li class="nav-item links-">
+              <button
+                class="nav-link button-1 px-3 px-sm-4"
+                id="openModalBtn"
+                data-bs-toggle="modal"
+                data-bs-target="#subscriptionModal"
+                style="color:white"
+              >
+                Explore
+              </button>
+            </li>
+          
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="bottom-bar"></div>
+  
+ <!-- LoginModal -->
+ <div
+     class="modal fade rounded-4"
+     id="subscriptionModal"
+     tabindex="-1"
+     aria-labelledby="subscriptionModalLabel"
+     aria-hidden="true"
+   > 
+     <div class="modal-dialog modal-lg modal-dialog-centere">
+       <div class="modal-content rounded-4">
+         <div class="modal-body row g-0 p-0">
+           <!-- Image Column with Close Button Overlay -->
+           <div class="col-12 position-relative p-0 d-block d-md-none">
+
+           <svg xmlns="http://www.w3.org/2000/svg" 
+              width="30" height="30" 
+              fill="rgba(120, 116, 109, .7)" 
+              class="bi bi-x-circle btn-clos btn-close- position-absolute d-block d-md-none" viewBox="0 0 16 16"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              style="top: 20px; left: 20px; z-index: 10;"
+            >
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </div>
+
+        <div class="col-md-5 col-lg- position-relative p-0 d-none d-md-block">
+
+          <svg xmlns="http://www.w3.org/2000/svg" 
+            width="30" height="30" fill="#fff" 
+            class="bi bi-x-circle svg btn-clos btn-close-white position-absolute" viewBox="0 0 16 16"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            style="top: 20px; left: 20px; z-index: 10; cursor: pointer;"
+            >
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+
+            <img
+              class="img-fluid h-100 w-100"
+              src="{% static 'images/img.jpeg' %}"
+              style="object-fit: cover; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"
+             />
+          </div>
+   
+           <!-- Content Column -->
+           <div class="col-md-7 col-lg- d-flex flex-column justify-content-center align-items-center px-2 px-xs-3 px-sm-4 px-md-5 py-5">
+             <div class="text-center mb-3">
+               <img
+                 class="img-fluid"
+                 style="max-width: 100px;"
+                 src="{% static 'images/muna-kalati-logo.svg' %}"
+               />
+             </div>
+             <h4 class="text-center">Welcome back!</h4>
+             <p class="text-center body-text">Login to continue your subscription.</p>
+             <form method="post" class="w-100">
+               {% csrf_token %}
+               <input
+                 class="form-control log-in mb-3"
+                 type="text"
+                 id="username"
+                 name="email"
+                 placeholder="Enter your email"
+                 required
+               />
+               
+               <!-- Password Input with Eye Icon -->
+             <div class="input-group rounded-4 mb-3">
+              <input
+                class="form-control log-in"
+                type="password"
+                id="loginPassword"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+              <span class="input-group-text" onclick="toggleLoginPasswordVisibility()">
+                <i id="eyeIcon" class="bi bi-eye-slash" style="cursor: pointer;"></i>
+              </span>
+            </div>
+
+               <a class="body-text my-3 text-right float-end" 
+                 style="color: #3c3a36;" href="#">Forgot password?</a>
+
+               <button 
+                class="btn btn-sm button rounded-4 w-100 body-tex" 
+                type="submit">Login</button>
+               
+               <div class="row m-aut justify-content-between mt-4">
+                 <p class="text-center body-text">Or log in with</p>
+                 
+                  <div class="col-6">
+
+                   <button class="btn bordered rounded-5" type="button">
+                    <img style="width: 24px" src="{% static 'images/google.svg' %}" />
+                    &nbsp;Google
+                  </button>
+                 </div>
+                  <div class="col-6">
+                   <button class="btn bordered rounded-5" type="button">
+                    <img style="width: 24px"  src="{% static 'images/facebook.svg' %}"/>
+                    &nbsp;Facebook
+                  </button>
+                 </div>
+
+                 <span class="col- mt-4 body-text text-center">
+                  Don't have an account?   
+                  <a class="body-text" 
+                  style="color: #3c3a36; cursor: pointer;" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#signUpModal" 
+                  data-bs-dismiss="modal">Sign up</a>
+                 </span>
+               </div>
+             </form>
+           </div>
+         </div>
+       </div>
+       </div>
+  </div>
+  
+<!-- Sign-Up Modal -->
+<div
+  class="modal fade rounded-4"
+  id="signUpModal"
+  tabindex="-1"
+  aria-labelledby="signUpModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content rounded-4">
+      <div class="modal-body row g-0 p-0">
+        <!-- Image Column with Close Button Overlay -->
+        <div class="col-12 position-relative p-0 d-block d-md-none">
+          <svg xmlns="http://www.w3.org/2000/svg" 
+           width="30" height="30" 
+           fill="rgba(120, 116, 109, .7)" 
+           class="bi bi-x-circle btn-clos btn-close- position-absolute d-block d-md-none" viewBox="0 0 16 16"
+           data-bs-dismiss="modal"
+           aria-label="Close"
+           style="top: 20px; left: 20px; z-index: 10;"
+         >
+         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+          </svg>
+       </div>
+
+     <div class="col-md-5 col-lg- position-relative p-0 d-none d-md-block">
+       <svg xmlns="http://www.w3.org/2000/svg" 
+         width="30" height="30" fill="#fff" 
+         class="bi bi-x-circle svg btn-clos btn-close-white position-absolute" viewBox="0 0 16 16"
+         data-bs-dismiss="modal"
+         aria-label="Close"
+         style="top: 20px; left: 20px; z-index: 10; cursor: pointer;"
+         >
+         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+       </svg>
+
+         <img
+           class="img-fluid h-100 w-100"
+           src="{% static 'images/Sign-Up.jpg' %}"
+           style="object-fit: cover; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"
+          />
+       </div>
+
+        <!-- Content Column for Sign Up Form -->
+        <div class="col-md-7 col-lg- d-flex flex-column justify-content-center align-items-center px-2 px-xs-3 px-sm-4 px-md-5 py-5">
+            <div class="text-center mb-3">
+              <img
+                class="img-fluid"
+                style="max-width: 100px;"
+                src="{% static 'images/muna-kalati-logo.svg' %}"
+              />
+            </div>
+            <h4 class="text-center">Sign Up</h4>
+          <form method="post" class="w-100">
+            {% csrf_token %}
+            <input
+              class="form-control log-in mb-3"
+              type="text"
+              id="signUpUsername"
+              name="username"
+              placeholder="Enter your full name"
+              required
+            />
+            <input
+              class="form-control log-in mb-3"
+              type="email"
+              id="signUpEmail"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          <input
+          class="form-control log-in mb-3"
+          type="tel"
+          id="signUpPhone"
+          name="phone"
+          placeholder="Enter your phone number"
+          pattern="[0-9]{10}"
+          required
+        />
+      
+             <!-- Password Input with Eye Icon -->
+             <div class="input-group rounded-4 mb-3">
+              <input
+                class="form-control log-in"
+                type="password"
+                id="signUpPassword"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+              <span class="input-group-text" onclick="togglePasswordVisibility()">
+                <i id="eyeIcon" class="bi bi-eye-slash" style="cursor: pointer;"></i>
+              </span>
+            </div>
+
+            <button class="btn btn-sm button rounded-4 w-100 body-tex" type="submit" >Sign Up</button>
+          </form>
+
+  <!-- Terms & Conditions Checkbox -->
+  <div class="form-check my-3">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="termsConditions"
+      name="termsConditions"
+      required
+    />
+    <label class="form-check-label body-text" for="termsConditions">
+      By checking the box, you agree to our
+       <a href="{% url 'terms_of_use' %}" target="_blank" style="color: #3c3a36;">Terms & Conditions</a>.
+    </label>
+  </div>
+
+  <div class="row justify-content-between mt-">
+    <p class="text-center body-text">Or sign up with</p>
+    
+     <div class="col-6">
+
+      <button class="btn bordered rounded-5" type="button">
+       <img style="width: 24px" src="{% static 'images/google.svg' %}" />
+       &nbsp;Google
+     </button>
+    </div>
+     <div class="col-6">
+      <button class="btn bordered rounded-5" type="button">
+       <img style="width: 24px"  src="{% static 'images/facebook.svg' %}"/>
+       &nbsp;Facebook
+     </button>
+    </div>
+  </div>
+     <span class=" mt-3 body-text text-center">
+     Already have an account?   
+     <a class="body-text" 
+     style="color: #3c3a36; cursor: pointer;" 
+     data-bs-toggle="modal" 
+     data-bs-target="#subscriptionModal" 
+     data-bs-dismiss="modal">Log in</a>
+    </span>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+   
+     {% endblock header %}
+    
+    {% block content %} {% endblock content %}
+
+    {% block footer %} {% include "footer.html" %} {% endblock footer %}
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // subscription.js
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("subscriptionModal");
+        const openBtn = document.getElementById("openModalBtn");
+        const closeBtn = document.querySelector(".close");
+
+        // Open the modal when the subscribe button is clicked
+        openBtn.onclick = function () {
+          modal.style.display = "block";
+        };
+
+        // Close the modal when the X is clicked
+        closeBtn.onclick = function () {
+          modal.style.display = "none";
+        };
+
+        // Close the modal if the user clicks outside of the modal
+          window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        };
+      });
+
+      
+
+    function toggleLoginPasswordVisibility() {
+      const passwordField = document.getElementById("loginPassword");
+      const eyeIcon = document.getElementById("eyeIcon");
+
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      eyeIcon.classList.remove("bi-eye-slash");
+      eyeIcon.classList.add("bi-eye");
+    } else {
+      passwordField.type = "password";
+      eyeIcon.classList.remove("bi-eye");
+      eyeIcon.classList.add("bi-eye-slash");
+    }
+  }
+  
+  function togglePasswordVisibility() {
+    const passwordField = document.getElementById("signUpPassword");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      eyeIcon.classList.remove("bi-eye-slash");
+      eyeIcon.classList.add("bi-eye");
+    } else {
+      passwordField.type = "password";
+      eyeIcon.classList.remove("bi-eye");
+      eyeIcon.classList.add("bi-eye-slash");
+    }
+  }
+
+    </script>
+
+
+<!-- Scroll to top button -->
+<script>
+  window.addEventListener("scroll", function() {
+    var scrollToTopButton = document.querySelector(".scroll-to-top");
+    if (window.scrollY > 250) {
+      scrollToTopButton.classList.add("active");
+    } else {
+      scrollToTopButton.classList.remove("active");
+    }
+  });
+  </script>
+  
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</body>
+</html>

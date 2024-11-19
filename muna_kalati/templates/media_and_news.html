@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Media & News</title>{% endblock title %}
+
+{% block content %}
+
+
+  <style>
+
+
+.media-container-fluid {
+  background-image: 
+    linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%),
+    url("../static/images/8.jpg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 60vh; /* Default height for larger screens */
+  padding: 150px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .media-container-fluid {
+    height: 40vh; /* Adjust height for tablets and smaller screens */
+    padding: 80px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .media-container-fluid {
+    height: 36vh; /* Further adjust height for very small screens */
+    padding: 70px 0;
+  }
+}
+
+
+      @media (max-width: 768px) {
+            .carousel-inner .carousel-item > div {
+              display: none;
+          }
+          .carousel-inner .carousel-item > div:first-child {
+            display: block;
+              width: 100%;
+            }
+          }
+      
+          @media (min-width: 769px) {
+          .carousel-inner .carousel-item > div
+          {
+            display: flex;
+              width: 55%;
+            }
+          }
+      
+          .carousel-inner .carousel-item.active,
+          .carousel-inner .carousel-item-next,
+          .carousel-inner .carousel-item-prev {
+            display: flex;
+          }
+      
+      .carousel-item .card {
+        margin-right: 25px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px !important;
+        max-height: max-content;
+      }
+      
+      @media screen and (max-width: 768px) {
+        .carousel-item .card {
+          margin-right: auto;
+          /* padding: auto; */
+        }
+      }
+
+      .embedded-social-media {
+        height: 600px;
+        overflow: hidden;
+        border-radius: 17px;
+        padding:0;
+        margin: 0;
+      }
+          </style>
+      
+<!-- Hero Section -->
+<div class="media-container-fluid container-fluid pt-auto mb-5 ">
+  <!-- <div class="overlay"></div> -->
+  <div class="hero- container my-">
+    <h1 class="header-text text-left">
+      Media & News
+    </h1>
+    <br>
+    <span class="sub-header-text">  
+      Stay updated with the latest news, media coverage, 
+    and insights about our app and initiatives.
+    </span>
+  </div>
+</div>
+
+<!-- Featured News -->
+<div class="container my-5">
+  <div class="row">
+    <h2 class="">Featured News</h2> 
+
+    <div class="card mb-3 border-0">
+      <div class="row g-0">
+        <div class="col-md-4">
+        <a href="{% url 'featured_news_detail' featured_news.pk %}" class="read-more-link">
+          <img
+            src="{{ featured_news.update.image.url }}"
+            class="img-fluid rounded-4 custom-im"
+            alt="..."
+          />
+        </a>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body px-0 px-sm-4">
+        <a href="{% url 'featured_news_detail' featured_news.pk %}" 
+           class="read-more-link">
+            <h4>
+              {{ featured_news.update.title| truncatewords:"7" }}
+            </h4>
+        </a>
+            <p class="card-text body-text">{{ featured_news.update.content| truncatewords:"30" }}</p>
+            <a
+              href="{% url 'featured_news_detail' featured_news.pk %}"
+              class="read-more-link"
+              >{{ featured_news.update.category }} · <span class="body-text">{{ featured_news.update.reading_duration }} read</span>
+              </a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Latest Updates -->
+<div class="container my-5">
+
+  <div class="row justify-content-between g-3">
+
+    <div class="col-8 col-sm-9 d-inline-fle  my-">
+      <h2 class="">Latest Updates</h2>
+    </div>
+    <div class="col-4 col-sm-3 text-end">
+  <a
+    href="{% url 'latest_updates' %}"
+    class="body-text" style="font-weight: bold;"
+  >
+  See All&nbsp;
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+  </svg>
+  </a>
+</div>
+</div>
+
+  <div class="row justify-content-between row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+    {% for update in updates %}
+    <div id="latest_updates" class="card h-100 border-0">
+      <a href="{% url 'latest_update_detail' update.pk %}" class="read-more-link">
+        <img
+        src="{{ update.image.url }}"
+        class="card-img-top img-flui custom-im rounded-3"
+        alt="..."
+      />
+      </a>
+      <div class="card-body px-0">
+      <a href="{% url 'latest_update_detail' update.pk %}" class="read-more-link">
+        <h4 class="card-titl">{{ update.title | truncatewords:7 }}</h4>
+      </a>
+        <p class="card-tex body-text">{{ update.content|truncatewords:20 }}</p>
+        <a
+          href="{% url 'latest_update_detail' update.pk %}"
+          class="read-more-link"
+          >{{ update.category }} ·<span class="body-text">{{ update.reading_duration }} read</span></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- In the Media Section -->
+<div class="container-fluid p-0 m-0">
+  <!-- Media Section -->
+  <div class="media-section py-4">
+  
+<div class="container-fluid justify-content-center">
+  <div class="container">
+  <div class="row">
+    <h2 class="pt-4">In the Media</h2>
+
+    <div id="recipeCarousel" class="carousel slide border-0" data-bs-ride="carousel">
+      <div class="carousel-inner pb-5 pt-2 px-2" role="listbox">
+
+        {% for media in external_media %}
+        <div class="carousel-item rounded-4 {% if forloop.first %} active {% endif %}">
+          <div class="col-sm-5 ">
+            <div class="card rounded-4" 
+              style="position: relative; overflow: hidden;"> 
+          
+              <div class="card-img rounded-4">
+                <img src="{{ media.image.url }}"
+                class="img-fluid rounded-" alt="{{ media.title }}">
+              </div>
+              
+              <a href="{{ media.link }}" target="_blank" 
+                class="stretched-link d-flex">
+                <div class="card-img-overlay text-white d-flex flex-column justify-content-end"
+                  style="background:  linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%); padding: 15px;">
+              
+                  <div class="card-text mb-2 d-flex align-items-center">
+                    <img src="{{ media.source_icon.url }}" 
+                    class="img-fluid img-circle" alt="{{ media.source }}"
+                    style="width: 40px; height: 40px; border-radius: 25px; margin-right: 10px;"> 
+                    {{ media.source }}
+                  </div>  
+
+                  <h2 class="card-title" style="font-weight: normal; font-size: 1.5rem;">{{ media.title }}</h2>
+                </div>
+              </a>
+              
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+      <a class="carousel-control-prev bg-transparent h-75  w-aut" href="#recipeCarousel"
+        role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </a>
+      <a class="carousel-control-next bg-transparent h-75 w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+    <script>
+      let items = document.querySelectorAll('.carousel .carousel-item')
+
+      items.forEach((el) => {
+        const minPerSlide = 4
+        let next = el.nextElementSibling
+        for (var i = 1; i < minPerSlide; i++) {
+          if (!next) {
+            // wrap carousel by using first child
+            next = items[0]
+          }
+          let cloneChild = next.cloneNode(true)
+          el.appendChild(cloneChild.children[0])
+          next = next.nextElementSibling
+        }
+      })
+    </script>
+  </div>
+
+</div>
+
+  <!-- Press Releases Section -->
+  <div class="press-releases">
+    <div class="container pt-5">
+      <h2>Press Releases</h2>
+      {% for release in press_releases %}
+      <div class="mb-5">
+        <h4 class="mb-3">{{ release.title }}</h4>
+        <p class="body-text">{{ release.content | truncatewords:35 }}</p>
+        <a
+          href="{% url 'press_release_detail' release.pk %}"
+          class="btn-read-more text-decoration-none"
+          >Read Full Release</a
+        >
+      </div>
+      {% endfor %}
+      <hr />
+    </div>
+  </div>
+
+  <!-- Social Media Section -->
+
+    <div class="container mb-5">
+      <h2 class="">Follow Us on Social Media</h2>
+      <div class="row text-center row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center">
+        {% for post in posts %}
+          <div class="car justify-content-center d-flex rounded-4 small embedded-social-media p-3">
+            {{ post.code_to_embed | safe }}
+          </div> 
+        {% endfor %}
+      </div>
+    </div>
+
+  <style>
+    .email {
+      width: 45%;
+    }
+    @media screen and (max-width: 768px) {
+      .email {
+      width: 100%;
+    }
+    }
+  </style>
+
+<!-- Subscribe -->
+<div class="container-fluid pt-5 pb-5 mb-2" style="background-color: #ed552a;">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-white">Stay Updated!</h2>
+      <p class="body-text text-white">
+        Subscribe to our newsletter for the latest news, updates, and exclusive content straight to your inbox.
+      </p>
+      <!-- Subscription Form -->
+      <form action="#" method="post" class="d-sm-flex">
+        {% csrf_token %}
+
+        <input type="email" name="email" placeholder="Enter your email address..." required
+               class="form-control email me-3 rounded-4">
+
+        <button type="submit" class="btn btn-ligh button-1 rounded-5 px-4 mt-3 mt-sm-0">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+  {% endblock content%}
+
+
+  {% block footer %} {% include "footer.html" %} {% endblock footer %}
+  

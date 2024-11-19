@@ -1,0 +1,1183 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}<title>About Us</title>{% endblock title %} 
+
+{% block content %}
+<style>
+  #extra-content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
+  #extra-content.open {
+    max-height: 1000px; /* A large enough value to fit the content */
+    opacity: 1;
+  }
+</style>
+
+<section class="container-fluid">
+  <div class="container">
+    <div class="row pt-5 d-flex justify-content-between align-items-center">
+      <div class="col-md-4 col-lg-">
+        <img
+          src="{% static 'images/MK-Image.png' %}"
+          class="img-fluid w-100 float-md-left me-md- mb-3 rounded-4"
+          alt="Responsive image"
+        />
+      </div>
+      <div class="col-md-8 col-lg-7 col-sm- pt- pt-xl-">
+        <h2 class="mt-4 mt-md-0">About Muna Kalati</h2>
+        <p class="body-text">
+          Muna Kalati (MK) is an award-winning edtech company that specializes
+          in developing educational resources that positively shape the identity
+          of African children, empowering them to be confident critical thinkers
+          and global champions. We created the Muna App, the first Afrocentric
+          app with storybooks, audiobooks, and animated videos (songs,
+          lullabies, rhymes, etc.) specifically designed for African children.
+          We enable African publishers of children's books and creators of
+          educational resources for children to distribute and monetize their
+          products via our platform.
+        </p>
+
+        <!-- Read More button for col-md-8, shown when extra-content is hidden -->
+        <button
+          id="read-more-btn-md"
+          class="btn btn-primar button btn-sm"
+          onclick="toggleContent()"
+          style="display: block"
+        >
+          Read More
+        </button>
+      </div>
+
+      <div class="col-12 mt-lg-4">
+        <!-- Extra content, initially hidden with animation -->
+        <div id="extra-content">
+          <p class="body-text">
+            Through the app, children can learn 39 African languages, such as
+            Twi, Yoruba, Igbo, Swahili, etc. The Early Grade Reading Assessment
+            (EGRA) results indicate that reading and learning outcomes can be
+            improved if children have appropriate texts to practice reading
+            skills in their mother tongue.
+          </p>
+          <p class="body-text">
+            With a strong focus on SDG 4 and SDG 17, we have a network of over
+            2153 early childhood specialists in Africa, including illustrators,
+            cartoonists, writers, and publishers of children's books.
+          </p>
+          <p class="body-text">
+            MK also has about a decade of experience providing training and
+            professional development opportunities for content creators of
+            educational resources for children since this is a sensitive period
+            of human development.
+          </p>
+          <p class="body-text">
+            We aim to ensure that every African child grows firmly rooted in
+            their cultural identity. We believe that quality early childhood
+            education, through culturally relevant content, would contribute to
+            a greater understanding of Africa and facilitate the development of
+            better solutions to existing crises (identity, corruption, poverty,
+            etc.).
+          </p>
+          <p class="body-text">
+            We value innovation, collaboration, and excellence. Innovation is
+            vital because creativity and adventure are central to everything we
+            do. We love collaborating with governments, publishers, writers,
+            investors, development partners and teachers because we can only go
+            far if united. We have collaborated with Google, UNICEF, UNESCO,
+            AfDB, Siemens Stiftung, BnF, Ghana Book Development Council (GBDC),
+            Ghana Publishers Association etc. on ECD projects. Excellence,
+            finally, is our minimum standard, and the MK Team is known for their
+            high level of professionalism, mastery and commitment, which are
+            essential, especially when working with children, the most critical
+            season of human capital development.
+          </p>
+          <p class="body-text">
+            We always say that the best moment to change a story is at the
+            beginning. Thus, the best way to change the African narrative is to
+            start with children, and that’s why we are always excited and
+            passionate when serving them through our various initiatives.
+          </p>
+        </div>
+
+        <!-- Read Less button for col-12, shown when extra-content is visible -->
+        <button
+          id="read-less-btn-lg"
+          class="btn btn-primar button btn-sm mt-4"
+          onclick="toggleContent()"
+          style="display: none"
+        >
+          Read Less
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleContent() {
+    const extraContent = document.getElementById("extra-content");
+    const readMoreBtnMd = document.getElementById("read-more-btn-md");
+    const readLessBtnLg = document.getElementById("read-less-btn-lg");
+
+    if (extraContent.classList.contains("open")) {
+      // Close the extra content
+      extraContent.classList.remove("open");
+      extraContent.style.maxHeight = "0";
+      readMoreBtnMd.style.display = "block";
+      readLessBtnLg.style.display = "none";
+    } else {
+      // Open the extra content
+      extraContent.classList.add("open");
+      extraContent.style.maxHeight = extraContent.scrollHeight + "px";
+      readMoreBtnMd.style.display = "none";
+      readLessBtnLg.style.display = "block";
+    }
+  }
+</script>
+
+<style>
+  /* For medium screens and up */
+  @media (min-width: 768px) {
+    .float-md-left {
+      float: left;
+    }
+    .me-md-3 {
+      margin-right: 1rem;
+    }
+  }
+</style>
+
+<style>
+  @media (max-width: 768px) {
+    .carousel-inner .carousel-item > div {
+      display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+      display: block;
+      /* width: 100%; */
+    }
+  }
+
+  @media (min-width: 769px) {
+    /* .carousel-inner .carousel-item > div {
+        display: none;
+    } */
+    .carousel-inner .carousel-item > div
+    /* :first-child */ {
+      display: block;
+      width: 50%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-inner .carousel-item > div {
+      display: flex;
+    }
+    .carousel-inner .carousel-item > div
+    /* :first-child */ {
+      display: block;
+      width: 26.5%;
+    }
+  }
+
+  .carousel-inner .carousel-item.active,
+  .carousel-inner .carousel-item-next,
+  .carousel-inner .carousel-item-prev {
+    display: flex;
+  }
+
+  .carousel-item .card {
+    margin-right: 25px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px !important;
+    max-height: max-content;
+  }
+
+  @media screen and (max-width: 768px) {
+    .carousel-item .card {
+      margin-right: auto;
+      /* padding: auto; */
+    }
+  }
+
+  .team-name {
+    color: #08629e;
+    font-weight: bold;
+  }
+
+  .card-img img {
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    height: 220px; /* Default height for medium and larger screens */
+  }
+
+  @media (max-width: 1200px) {
+    .card-img img {
+      height: 210px;
+      /* Height for large tablets or small desktops */
+      /* object-position: top; */
+    }
+  }
+
+  @media (max-width: 992px) {
+    .card-img img {
+      height: 280px; /* Height for medium tablets */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card-img img {
+      height: 300px; /* Height for mobile devices in landscape mode */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .card-img img {
+      height: 260px; /* Height for mobile devices in portrait mode */
+    }
+  }
+
+  .social-icon-2 {
+    margin: 0 18.6px 18px 0;
+    display: inline-block;
+    text-decoration: none;
+    color: #cac9c7;
+    /* color: #a3a19d; */
+    font-size: 22px;
+  }
+  .social-icon-2:hover {
+    color: #78746d;
+    transition: all 0.3s ease-in-out;
+  }
+  p {
+    color: #78746d;
+  }
+
+  .star-yellow {
+    color: #ed552a;
+  }
+
+  .border {
+    /* border-color: #08629e !important; */
+    width: 97%;
+    min-height: 210px;
+  }
+
+  .button-1:hover {
+    background-color: rgba(18, 127, 199, 0.9) !important;
+    /* border: 1px solid #fff !important; */
+    color: #ffffff;
+  }
+</style>
+
+<!-- Meet Our Teem -->
+
+<div class="container-fluid justify-content-center">
+  <div class="container">
+    <div class="row pb-5">
+      <h2 class="pt-5">Meet Our Team</h2>
+      <div class="body-text">
+        Discover the passionate minds driving our mission to educate and inspire
+        the next generation.
+      </div>
+      <div
+        id="recipeCarousel"
+        class="carousel slide border-0"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner pb-5 pt-4" role="listbox">
+          {% for member in team_members %}
+          <div
+            class="carousel-item px-2 rounded-3 {% if forloop.first %}active{% endif %}"
+          >
+            <div class="card col-md-3 border-0 shadow rounded-3">
+              <div class="card-img p-3">
+                <img
+                  src="{{ member.image.url }}"
+                  class="img-fluid rounded-3"
+                  alt="{{ member.name }}"
+                />
+              </div>
+              <div class="card-body">
+                <h4 class="team-name">{{ member.name }}</h4>
+                <h6 class="pb-2">{{ member.title }}</h6>
+                <p class="body-text">{{ member.bio }}</p>
+              </div>
+              <div class="px-3">
+                {% if member.linkedin_url %}
+                <a class="" href="{{ member.linkedin_url }}" target="_blank">
+                  <!-- LinkedIn SVG -->
+                  <i class="bi bi-linkedin social-icon-2"></i>
+                </a>
+                {% endif %} {% if member.facebook_url %}
+                <a class="" href="{{ member.facebook_url }}" target="_blank">
+                  <!-- Facebook SVG -->
+                  <i class="bi bi-facebook social-icon-2"></i>
+                </a>
+                {% endif %} {% if member.instagram_url %}
+                <a
+                  class="social-icon-"
+                  href="{{ member.instagram_url }}"
+                  target="_blank"
+                >
+                  <!-- Instagram SVG -->
+                  <i class="bi bi-instagram social-icon-2"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <a
+          class="carousel-control-prev bg-transparent h-75 w-aut"
+          href="#recipeCarousel"
+          role="button"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a
+          class="carousel-control-next bg-transparent h-75 w-aut"
+          href="#recipeCarousel"
+          role="button"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Join Our Teem -->
+<div class="container-fluid pt-5 pb-4" style="background-color: #ed552a">
+  <div class="container">
+    <div class="row">
+      <h2 class="text-white">Join Our Team</h2>
+      <div class="body-text text-white">
+        At Muna Kalati, we are always on the lookout for passionate and talented
+        individuals who share our commitment to education and cultural
+        enrichment. Whether you're a creative, a tech expert, or an educator,
+        we'd love to hear from you!
+        <!-- <br>     -->
+      </div>
+      <h6>
+        <a
+          type="button"
+          href="{% url 'job_list' %}"
+          class="btn button-1 border- rounded-5 my-4"
+          style="width: auto"
+        >
+          View Open Positions
+        </a>
+      </h6>
+    </div>
+  </div>
+</div>
+
+<!-- The Story Behind the App -->
+<div class="container-fluid pt-5">
+  <div class="container">
+    <div class="row">
+      <h2 class="">The Story Behind the App</h2>
+      <div class="body-text mb">
+        Muna Kalati, after 7 years of dedication to the promotion of African
+        children's books through research, documentation and advocacy, wishes to
+        respond to a crucial need: the absence of a centralized platform for
+        distributing and monetizing African children's books limits access for
+        young readers, contributing to a poor understanding of their cultural
+        heritage and hindering efforts to improve their foundational literacy
+        skills. This gap hinders access to work and limits distribution and
+        sales opportunities. To remedy this, Muna Kalati has launched the
+        development of a mobile and web application.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ratings -->
+<div class="container-fluid pt-5">
+  <div class="container justify-content-center">
+    <h2>What Our Users Say</h2>
+
+    <!-- Ratings Mobile view -->
+    <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-4">
+      <div class="col-12">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-4 p-2 p-sm-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="auto"
+              height="auto"
+              fill="#6fc0f7"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              />
+            </svg>
+          </div>
+
+          <div class="col-8">
+            <h5 class="pt-3">Nana Asare, Parent</h5>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 30 30"
+              fill="none"
+              class="bi bi-star-fill"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                fill="#D3D3D3"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <p class="pt-3">
+          "My kids absolutely love this app, The stories are so engaging and I
+          love that they can learn about African culture while having fun."
+        </p>
+      </div>
+    </div>
+
+    <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-4">
+      <div class="col-12">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-4 p-3 p-sm-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="auto"
+              height="auto"
+              fill="#6fc0f7"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              />
+            </svg>
+          </div>
+          <div class="col-8 p-2 p-sm-4">
+            <h5 class="pt-3">Amara Diallo, Parent</h5>
+                       
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-half"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <p class="pt-3">
+          "This app has been a game-changer for us. The oint system and rewards
+          have motivated my son to read more, and he's learning so much."
+        </p>
+      </div>
+    </div>
+
+    <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-4">
+      <div class="col-12">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-4 p-3 p-sm-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="auto"
+              height="auto"
+              fill="#6fc0f7"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              />
+            </svg>
+          </div>
+          <div class="col-8 p-2 p-sm-4">
+            <h5 class="pt-3">Linda Owusu, Teacher</h5>
+              
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+          <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-half"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <p class="pt-3">
+          "As a teacher, I find this app incredibly useful. The content is rich
+          and diverse, and the interactive features make it easy to keep
+          students engaged."
+        </p>
+      </div>
+    </div>
+
+    <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-5">
+      <div class="col-12">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-4 p-3 p-sm-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="auto"
+              height="auto"
+              fill="#6fc0f7"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              />
+            </svg>
+          </div>
+          <div class="col-8 p-2 p-sm-4">
+            <h5 class="pt-3">Akwasi Acquah, Parent</h5>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="gold"
+            class="bi bi-star-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+            />
+          </svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 30 30"
+              fill="none"
+              class="bi bi-star-fill"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                fill="#D3D3D3"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <p class="pt-3">
+          "Muna Kalati has truly transformed reading for my kids, offering rich,
+          culturally relevant stories that ignite their passion for learning and
+          heritage."
+        </p>
+      </div>
+    </div>
+    <!-- Ratings Mobile view end-->
+
+
+
+    <!-- Ratings: Medium to Large Screens View -->
+    <div
+      class="row d-none d-sm-flex align-items-cente justify-content-between mb-5"
+    >
+      <div class="col-lg-6">
+        <div class="row justify-content-center align-items-cente">
+          <span class="row border mb-3 rounded-3 align-items-center">
+            <div class="col-3 align-items-cente text-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="auto"
+                height="auto"
+                fill="#6fc0f7"
+                class="bi bi-person-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path
+                  fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                />
+              </svg>
+            </div>
+            <div class="col-9">
+              <h5 class="pt-3">Nana Asare, Parent</h5>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 30 30"
+                fill="none"
+                class="bi bi-star-fill"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                  fill="#D3D3D3"
+                />
+              </svg>
+
+              <p class="pt-3">
+                "My kids absolutely love this app, The stories are so engaging
+                and I love that they can learn about African culture while
+                having fun."
+              </p>
+            </div>
+          </span>
+
+          <span class="row border mb-3 rounded-3 align-items-center">
+            <div class="col-3 align-items-cente text-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="auto"
+                height="auto"
+                fill="#6fc0f7"
+                class="bi bi-person-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path
+                  fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                />
+              </svg>
+            </div>
+            <div class="col-9">
+              <h5 class="pt-3">Amara Diallo, Parent</h5>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-half"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
+                />
+              </svg>
+
+              <p class="pt-3">
+                "This app has been a game-changer for us. The oint system and
+                rewards have motivated my son to read more, and he's learning so
+                much."
+              </p>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="row justify-content-center align-items-cente">
+          <div class="row border mb-3 rounded-3 align-items-center">
+            <div class="col-3 align-items-cente text-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="auto"
+                height="auto"
+                fill="#6fc0f7"
+                class="bi bi-person-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path
+                  fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                />
+              </svg>
+            </div>
+            <div class="col-9">
+              <h5 class="pt-3">Linda Owusu, Teacher</h5>
+              
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="gold"
+              class="bi bi-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+              />
+            </svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-half"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
+                />
+              </svg>
+
+              <p class="pt-3">
+                "As a teacher, I find this app incredibly useful. The content is
+                rich and diverse, and the interactive features make it easy to
+                keep students engaged."
+              </p>
+            </div>
+          </div>
+
+          <div class="row border mb-3 rounded-3 align-items-center">
+            <div class="col-3 align-items-cente text-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="auto"
+                height="auto"
+                fill="#6fc0f7"
+                class="bi bi-person-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path
+                  fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                />
+              </svg>
+            </div>
+            <div class="col-9">
+              <h5 class="pt-3">Akwasi Acquah, Parent</h5>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 30 30"
+                fill="none"
+                class="bi bi-star-fill"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                  fill="#D3D3D3"
+                />
+              </svg>
+
+              <p class="pt-3">
+                "Muna Kalati has truly transformed reading for my kids, offering
+                rich, culturally relevant stories that ignite their passion for
+                learning and heritage."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Ratings: Medium to Large Screens View end-->
+  </div>
+</div>
+
+<script>
+  let items = document.querySelectorAll(".carousel .carousel-item");
+
+  items.forEach((el) => {
+    const minPerSlide = 4;
+    let next = el.nextElementSibling;
+    for (var i = 1; i < minPerSlide; i++) {
+      if (!next) {
+        // wrap carousel by using first child
+        next = items[0];
+      }
+      let cloneChild = next.cloneNode(true);
+      el.appendChild(cloneChild.children[0]);
+      next = next.nextElementSibling;
+    }
+  });
+</script>
+
+{% endblock content %} 
+
+{% block footer %} {% include "footer.html" %} {% endblock footer %}

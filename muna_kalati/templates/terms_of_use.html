@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Terms of Use</title>{% endblock title %}
+
+{% block content %}
+
+
+  <style>
+    .rounded-4 {
+  border-radius: 10px !important;
+}
+
+.media-container-fluid {
+  background-image: 
+    linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%),
+    url("../static/images/9.jpg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 60vh; /* Default height for larger screens */
+  padding: 150px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .media-container-fluid {
+    height: 40vh; /* Adjust height for tablets and smaller screens */
+    padding: 80px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .media-container-fluid {
+    height: 36vh; /* Further adjust height for very small screens */
+    padding: 70px 0;
+  }
+}
+
+
+
+ol li {
+  margin-bottom: 12px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+ol li a{
+  color: #78746d;
+}
+
+ol li a:hover {
+  /* margin-bottom: 15px; */
+  color: #ed552a;
+}
+
+p {
+  margin-bottom: 25px;
+  margin-left: 22px;
+}
+  </style>
+
+<!-- Hero Section -->
+<div class="media-container-fluid container-fluid pt-auto mb-4 ">
+  <!-- <div class="overlay"></div> -->
+  <div class="hero- container my-">
+    <h1 class="header-text text-left">
+     Terms and Conditions
+    </h1>
+    <br>
+    <span class="sub-header-text">  
+     Effective Date: October 23, 2024
+    </span>
+  </div>
+</div>
+
+
+
+<div class="container body-text">
+
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="body-text" href="{% url 'index' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page" style="color: #ed552a;">Terms and Conditions</li>
+    </ol>
+  </nav>
+
+<div class="row mb-5 mt-4">
+
+    <div class="col">
+      <h4>Table of Contents</h4>
+      <ol>
+          <li><a href="#eligibility">Eligibility</a></li>
+          <li><a href="#user-accounts">User Accounts</a></li>
+          <li><a href="#content-ip">Content and Intellectual Property</a></li>
+          <li><a href="#user-generated-content">User-Generated Content</a></li>
+          <li><a href="#subscription-payments">Subscription and Payments</a></li>
+          <li><a href="#parental-controls">Parental Controls</a></li>
+          <li><a href="#privacy-policy">Privacy Policy</a></li>
+          <li><a href="#prohibited-uses">Prohibited Uses</a></li>
+          <li><a href="#disclaimer-warranties">Disclaimer of Warranties</a></li>
+          <li><a href="#limitation-liability">Limitation of Liability</a></li>
+          <li><a href="#changes-terms">Changes to Terms</a></li>
+          <li><a href="#termination">Termination</a></li>
+          <li><a href="#governing-law">Governing Law</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
+      </ol>
+
+      <h4>Introduction</h4>
+      <p class="body-text ms-0">
+        Welcome to Muna Kalati App (the “App”), operated by Muna Kalati (“We”, “Us”, or “Our”). These Terms and Conditions (the “Terms”) govern your use of the App and its associated services, including access to children’s content such as eBooks, audiobooks, animations, educational materials, and any other features made available through the App.
+      </p>
+      <p class="ms-0">
+        By downloading, installing, or using the App, you (“User”, “You”, or “Your”) agree to these Terms. If you do not agree to these Terms, please discontinue use of the App immediately.
+      </p>
+
+      <h4 id="eligibility">1. Eligibility</h4>
+      <p class="body-text">
+        The App is intended for users of all ages. However, if you are under 18, you must have the consent of a parent or guardian to use the App.
+      </p>
+
+      <h4 id="user-accounts">2. User Accounts</h4>
+      <p class="body-text">
+          2.1  To access certain App features, you may be required to create an account. You agree to provide accurate, complete, and current information when registering.<br/>
+          2.2  You are responsible for maintaining the confidentiality of your account credentials and for any activity under your account.<br/>
+          2.3  We reserve the right to terminate accounts that are found to violate these Terms.
+      </p>
+
+      <h4 id="content-ip">3. Content and Intellectual Property</h4>
+      <p class="body-text">
+          3.1  All content available on the App, including but not limited to eBooks, audiobooks, animations, graphics, and text (collectively, “Content”), is owned by Muna Kalati or licensed to Us. You are granted a limited, non-exclusive, and non-transferable right to access and use the Content solely for personal, non-commercial purposes.<br />
+          3.2  You may not copy, distribute, modify, or create derivative works from the Content without our written consent.
+      </p>
+
+      <h4 id="user-generated-content">4. User-Generated Content</h4>
+      <p class="body-text">
+        4.1  The App may allow users to post reviews, comments, or feedback ("User Content"). By posting User Content, you grant Us a non-exclusive, royalty-free, worldwide, irrevocable license to use, display, distribute, and modify such content.<br />
+        4.2  You agree not to post any content that is unlawful, harmful, offensive or violates the rights of third parties. We reserve the right to remove any User Content at our discretion.
+      </p>
+      
+      <h4 id="subscription-payments">5. Subscription and Payments</h4>
+      <p class="body-text">
+        5.1  Some features of the App may be available through paid subscriptions. Subscription fees, duration, and terms will be disclosed at the time of purchase.<br />
+        5.2  All subscription payments are processed securely through third-party payment providers. You agree to pay all applicable fees for services and subscriptions as outlined in the App.<br />
+        5.3  You may cancel your subscription anytime, but refunds will not be provided for partial subscription periods unless otherwise specified.
+      </p>
+
+      <h4 id="parental-controls">6. Parental Controls</h4>
+      <p class="body-text">
+        6.1  If you are a parent or guardian, you are responsible for monitoring and supervising your child’s app use.<br />
+        6.2  The App may include features such as parental control settings to manage your child’s access to certain content and usage time.
+      </p>
+
+      <h4 id="privacy-policy">7. Privacy Policy</h4>
+      <p class="body-text">
+        Our Privacy Policy outlines how we collect, use, and protect your personal information. By using the App, you acknowledge and agree to the practices described in the Privacy Policy.
+      </p>
+
+      <h4 id="prohibited-uses">8. Prohibited Uses</h4>
+      <p class="body-text">
+        8.1  Use the App for any illegal or unauthorized purpose.<br />
+        8.2  Disrupt or interfere with the security or performance of the App.<br />
+        8.3  Attempt to access any data or systems without authorization.<br />
+        8.4  Violate any laws or regulations while using the App.
+      </p>
+
+      <h4 id="disclaimer-warranties">9. Disclaimer of Warranties</h4>
+      <p class="body-text">
+        9.1  The App and Content are provided "as is" and "as available" without any warranties, either express or implied.<br />
+        9.2  We do not guarantee that the App will always be error-free, secure, or available.
+      </p>
+
+      <h4 id="limitation-liability">10. Limitation of Liability</h4>
+      <p class="body-text">
+        To the maximum extent permitted by law, Muna Kalati shall not be liable for any direct, indirect, incidental, special, or consequential damage arising from your use of the App or inability to access the App.
+      </p>
+
+      <h4 id="changes-terms">11. Changes to Terms</h4>
+      <p class="body-text">
+        We reserve the right to modify these Terms at any time. Any changes will be effective immediately upon posting. Continued App use after changes are posted constitutes acceptance of the modified Terms.
+      </p>
+
+      <h4 id="termination">12. Termination</h4>
+      <p class="body-text">
+        We reserve the right to terminate or suspend your access to the App at any time, without notice, for conduct that violates these Terms or is otherwise harmful to other users, Us, or third parties.
+      </p>
+
+      <h4 id="governing-law">13. Governing Law</h4>
+      <p class="body-text">
+        These Terms shall be governed by and construed by the laws of the Republic of Ghana. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts in Ghana.
+      </p>
+
+      <h4 id="contact-us">14. Contact Us</h4>
+      <p class="body-text">
+        If you have any questions or concerns regarding these Terms, please contact Us at:<br />
+        Muna Kalati<br />
+        communication@munakalati.org<br />
+        233503763074
+      </p>
+
+  </div>
+</div>
+</div>
+
+
+{% endblock content %}
+
+{% block footer %} {% include "footer.html" %} {% endblock footer %}

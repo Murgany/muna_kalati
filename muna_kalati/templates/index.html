@@ -1,0 +1,372 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+
+ .banner {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Set initial height for medium screens */
+  overflow: hidden;
+}
+
+.banner video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Use cover to maintain aspect ratio and fill the container */
+  object-position: center;
+}
+
+.banner h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2.5em; /* Default font size */
+  text-align: center;
+  z-index: 1;
+}
+
+.banner .banner-learn-more-button {
+  position: absolute;
+  top: 69%;
+  left: 50.5%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Medium screens (Tablets) */
+@media (max-width: 1024px) {
+  .banner .banner-learn-more-button  {
+    top: 70%;
+    left: 53%;
+  }
+}
+
+/* @media (max-width: 998px) {
+  .banner .banner-learn-more-button  {
+    top: 70%;
+    left: 55%;
+  }
+} */
+
+/* Small screens (Mobile) */
+@media (max-width: 768px) {
+  .banner .banner-learn-more-button {
+  top: 70%;
+  left: 54%;
+  font-size: .8em;
+  /* margin-bottom: auto; */
+}
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .button {
+    font-size: 12px;
+    padding: 2px 15px;
+  }
+  .banner .banner-learn-more-button {
+    top: 65%;
+  left: 59%;
+  font-size: .8em;
+}
+}
+
+/* Semi-transparent overlay for contrast */
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(8, 98, 158, 0.3);  */
+  /* #08629E with 50% opacity */
+  z-index: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .banner {
+    height: 50vh; /* Decrease height on smaller screens */
+  }
+
+  .banner h1 {
+    font-size: 1.8em; /* Reduce font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    height: 40vh; /* Further reduce height for extra-small screens */
+  }
+
+  .banner h1 {
+    font-size: 1.4em; /* Further reduce font size for extra-small screens */
+  }
+}
+</style>
+
+{% if hero_section %}
+  {% if hero_section.banner_video %}
+      <!-- Display video if available -->
+       <div class="banner w-100 h-75">
+        <video src="{{ hero_section.banner_video.url }}"
+          autoplay muted loop
+          class="w-100 h-"
+          style="object-fit: cover;">
+        </video>
+          <a href="{% url 'features' %}" type="button" class="btn button mt-3 banner-learn-more-button"
+          >Learn More
+        </a>
+
+      </div>
+
+{% elif hero_section.background_image %}
+<div
+  class="dynamic-hero-container-fluid mb-5 d-flex align-items-center"
+  style="background-image: url('{{ hero_section.background_image.url }}');"
+>
+  <div class="hero- container">
+    {% if hero_section.header_text %}
+    <h1 class="header-text pt-5 w-75 d-non d-sm-bloc">
+      {{ hero_section.header_text|linebreaks }}
+    </h1>
+    {% endif %}
+   <br />
+
+    <a href="{% url 'features' %}" type="button" class="btn button mt-3"
+      >Learn More
+    </a
+    >
+  </div>
+</div>
+{% else %}
+
+<div class="hero-container-fluid mb-5 d-flex align-items-center">
+  <div class="container">
+    <h1 class="header-text pt-5 d-none d-sm-block">
+      Empowering Young Minds<br />
+      Through Stories, Audio, and<br />
+      Animation
+    </h1>
+    <h1 class="header-text pt-5 d-block d-sm-none">
+      Empowering Young Minds Through Stories, Audio, and Animation
+    </h1>
+    <br />
+    <a href="{% url 'features' %}" type="button" class="btn button mt-3"
+      >Learn More</a
+    >
+  </div>
+</div>
+
+{% endif %} {% endif %}
+
+<!-- Introduction -->
+<div class="container pt-3 my-4">
+  <div class="row g-0 align-items-center">
+    <div class="col-md-3 d-flex justify-content-center">
+      <img
+        src="../static/images/Splash Screen.png"
+        class="img-fluid rounded custom-im"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-9">
+      <div class="introduction-benefit container">
+        <div class="introduction">
+          <h2 class="mt-5">Introduction</h2>
+          <span class="body-text">
+            The Muna Kalati App is an Afrocentric mobile app intentionally built
+            to resolve the foundational literacy skills problem among African
+            children through engaging contents such as eBooks, audiobooks and
+            animated contents, coupled with a language learning functionality
+            and a workspace for the African book publisher to distribute and
+            monetize their works
+            <br />
+          </span>
+
+          <h2 class="mt-3">Benefits</h2>
+          <span class="body-text">
+            The Muna Kalati App helps kids develop a love for learning, build
+            their self-confidence, and connect with their cultural roots.
+            Wholly, it inspires early learners to believe in the possibilities
+            within their own continent.
+            <br />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row mb-4 p-0">
+      <div class="col-md-6 mb-4 mb-md-0 align-items-center">
+        <div
+          class="card justify-content-betwee rounded-3 shadow px-4 pb-4 pt-5 fixed-height-card"
+        >
+          <div class="row">
+            <div class="col-1 me-2">
+              <img src="{% static '/images/benefit-1.svg' %}" />
+            </div>
+            <div class="col-10">
+              <h5 class="benefit-headings">Spark the Joy of Learning</h5>
+            </div>
+          </div>
+          <p class="body-text col-12">
+            The app ignites a passion for learning, empowering a new generation
+            of African children by revolutionizing access to culturally rich
+            literature.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 align-items-center">
+        <div
+          class="card justify-content-betwee rounded-3 shadow px-4 pb-4 pt-5 fixed-height-card"
+        >
+          <div class="row">
+            <div class="col-1 me-2">
+              <img src="{% static 'images/benefit-2.svg' %}" />
+            </div>
+            <div class="col-10">
+              <h5 class="benefit-headings">Global Stage for African Voices</h5>
+            </div>
+          </div>
+          <p class="body-text col-12">
+            A platform for content creators to distribute their work, reaching
+            diverse audiences with ease. It supports various formats and offers
+            tools to help creators grow and engage effectively.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row p-0">
+      <div class="col-md-6 mb-4 mb-md-0 align-items-center">
+        <div
+          class="card justify-content-betwee rounded-3 shadow px-4 pb-4 pt-5 fixed-height-card"
+        >
+          <div class="row">
+            <div class="col-1 me-2">
+              <img src="{% static 'images/benefit-3.svg' %}" />
+            </div>
+            <div class="col-10">
+              <h5 class="benefit-headings">Empower and Embrace Identity</h5>
+            </div>
+          </div>
+          <p class="body-text col-12">
+            The app empowers African children about their identity, enriches
+            their experiences for a fulfilling life, and offers authentic
+            cultural content to diaspora audiences.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 align-items-center">
+        <div
+          class="card justify-content-betwee rounded-3 shadow px-4 pb-4 pt-5 fixed-height-card"
+        >
+          <div class="row">
+            <div class="col-1 me-2">
+              <img src="{% static 'images/benefit-4.svg' %}" />
+            </div>
+            <div class="col-10">
+              <h5 class="benefit-headings">Learning Local Languages</h5>
+            </div>
+          </div>
+          <p class="body-text col-12">
+            The app enables children to learn native languages in a fun,
+            practical way. It helps them build language skills, connect with
+            their heritage, and gain confidence in speaking, reading, and
+            understanding their native languages.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <!-- Summary Section -->
+    <h2 class="introduction- mt-4">In Summary</h2>
+    <span class="pt-3 pb-4 body-text">
+      The Muna Kalati platform enriches young learners with interactive
+      experiences that deepen their connection to African culture. It also
+      empowers African creatives by increasing visibility, fostering
+      partnerships, and promoting their works.
+    </span>
+    <style>
+      .child {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        object-fit: cover;
+        width: 100%;
+        height: 250px;
+        margin-bottom: 20px;
+      }
+      @media screen and (min-width: 768px) {
+        .child {
+          height: 300px;
+        }
+      }
+    </style>
+    <!-- The African Child Section -->
+    <div class="row mt-4">
+      <div class="col-lg-3 col-md-4">
+        <img
+          class="rounded-3 img-fluid w-100"
+          src="{% static 'images/african-child.jpg' %}"
+          alt="Image for Readers"
+        />
+      </div>
+      <div class="col-lg-9 col-md-8" style="color: #78746d">
+        <h4 class="benefit-headings pt-3 pt-md-0">The African Child</h4>
+        <p class="body-text">
+          An enhanced learning experience through interactive content.<br />
+          A comprehensive digital platform with diverse catalogue of African
+          stories.<br />
+          A growing community of early learners and advocates for African
+          children’s literature.<br />
+          An increased access to African children’s literature for young readers
+          across the continent.<br />
+          A new generation of African children with a deep appreciation for
+          their cultural heritage through literature.<br />
+        </p>
+      </div>
+    </div>
+
+    <!-- Authors and Publishers Section -->
+    <div class="row mt-4 align-items-cente">
+      <div class="col-lg-3 col-md-4">
+        <img
+          class="rounded-3 img-fluid w-100"
+          src="{% static 'images/content-creators.jpg' %}"
+          alt="Image for Authors and Publishers"
+        />
+      </div>
+      <div class="col-lg-9 col-md-8" style="color: #78746d">
+        <h4 class="benefit-headings pt-3 pt-md-0">Content Creators</h4>
+        <p class="body-text">
+          A unique way to disseminate your contents to African children.<br />
+          Partnership with key stakeholders in foundational learning and the
+          EdTech sector.<br />
+          A trusted platform for African creatives to earn from their creative
+          work.<br />
+          Access to early childhood learning resources.<br />
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block footer %} {% include "footer.html" %} {% endblock footer %}

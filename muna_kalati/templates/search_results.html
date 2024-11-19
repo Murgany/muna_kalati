@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+
+ol li {
+  margin-bottom: 12px;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+ol li a{
+  color: #78746d;
+}
+
+ol li a:hover {
+  /* margin-bottom: 15px; */
+  color: #ed552a;
+}
+</style>
+
+<!-- Content body | Search results  -->
+<div class="container-fluid justify-content-center my-5">
+  <div class="container">
+    <div class="row">
+
+     {% if latest_updates %}
+  
+     <div class="col-12 justify-content-cente pt-0 pb-5 px-">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a class="body-tex" 
+                href="{% url 'latest_updates' %}">Latest Updates</a>
+            </li>
+            <li class="breadcrumb-item active"
+              aria-current="page" style="color: #ed552a;">Search
+            </li>
+          </ol>
+        </nav>
+       <h4 class='text-center'>Search result/s for "{{ query }}"</h4>
+       <ul class='p-' style='list-style-type: none'>
+         {% for update in latest_updates %}
+         <li class="mt-5">
+             <a class='pdf-lin' style="color: #08629E;" href="{% url 'latest_update_detail' update.pk %}">
+                 {{ update.title }}
+             </a>
+         </li>
+         <div class="row align-items-center mt-3">
+            <div class="col- col-sm-5 col-md-3">
+              <a href="{% url 'latest_update_detail' update.pk %}" class="read-more-link">
+                <img src="{{ update.image.url }}"
+                   class="card-img-top img-fluid custom-im rounded-3" alt="...">
+               </a>
+            </div>
+            <div class="col- pt-3 pt-sm-0 col-sm-7 col-md-9">
+              <p>{{ update.content|truncatewords:20 }}</p>
+              <a type="button" class='' 
+                style="color:#ed552a" href="{% url 'latest_update_detail' update.pk %}">
+                Read full artice. <span class="body-text">{{ update.reading_duration}} read</span>
+              </a>
+            </div>
+         </div>
+         {% empty %}
+         <span>Result not found</span>
+         {% endfor %}
+       </ul>
+      </div>
+
+     {% elif jobs %}
+
+     <div class="col-12 justify-content-cente pt-0 pb-5 px-">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="body-tex" href="{% url 'job_list' %}">Open Positions</a></li>
+      <li class="breadcrumb-item active" aria-current="page" style="color: #ed552a;">Search</li>
+        </ol>
+      </nav>
+
+      <h4 class='text-center'>Search result/s for "{{ query }}"</h4>
+      <ul class='' style='list-style-type: none'>
+        {% for job in jobs %}
+        <li>
+            <a class='' href="{% url 'job_details' job.pk %}">
+                {{ job.job_title }}
+            </a>
+        </li>
+        <p>{{ job.brief_description }}</p>
+        {% empty %}
+         <span>Result not found</span>
+        {% endfor %}
+      </ul>
+     </div>
+     {% else %}
+     <div class="col-12 justify-content-cente pt-0 pb-5 px-">
+
+       <h4 class="mb-5">Not results found for "{{ query }}"</h4>
+
+      <nav style="--bs-breadcrumb-divider: '|';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a class="body-tex" href="{% url 'index' %}">Home</a></li>
+       <li class="breadcrumb-item"><a class="body-tex" href="{% url 'features' %}">Features</a></li>
+       <li class="breadcrumb-item"><a class="body-tex" href="{% url 'media_and_news' %}">Media and News</a></li>
+       <li class="breadcrumb-item"><a class="body-tex" href="{% url 'latest_updates' %}">Latest Updates</a></li>
+       <li class="breadcrumb-item"><a class="body-tex" href="{% url 'job_list' %}">Join Us</a></li>
+       <!-- <li class="breadcrumb-item active" aria-current="page" style="color: #ed552a;">Search</li> -->
+      </ol>
+      </nav>
+     </div>
+    {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<!-- Content body end | Search results for multiple models end -->
+
+{% endblock content %}
+

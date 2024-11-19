@@ -1,0 +1,252 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block content %}
+
+<style>
+
+    .yellow-circle {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #fac85d;
+    }
+        
+  .carousel-img {
+    width: 100%;  /* Ensures images stretch to fill container */
+    max-height: 300px; /* Sets a maximum height for the images */
+
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+}
+
+@media (min-width: 768px) {
+    .carousel-img {
+        max-height: 400px; /* Increase max height for larger screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel-img {
+        max-height: 500px; /* Increase max height for even larger screens */
+    }
+}
+
+
+.store-icon {
+    width: 170px;  
+    height: 45px; 
+    border-radius: 55px;  /* Optional: rounds the corners */
+    background-color: aliceblue;
+    /* margin-left: 50px; */
+    /* margin-right: 50px; */
+}
+
+.video-background {
+    position: relative;
+    height: 100vh; /* Full height */
+    width: 100vw; /* Full width */
+    overflow: hidden; /* Hide overflow */
+}
+
+.video-background vide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Place behind other content */
+    transform: translate(-50%, -50%); /* Center the video */
+}
+
+.video-overlay {
+    position: relative; /* Position relative to the container */
+    z-index: 1; /* Ensure content is above the video */
+    color: white; /* Text color */
+    text-align: center; /* Center text */
+
+    background-image: 
+      linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.45) 26%, rgba(0, 0, 0, 0.23) 100%);
+    border: 3px solid #dfdfdf;
+}
+
+
+</style>
+<!-- Features -->
+
+<div class="container-fluid justify-content-center my-5">
+  <div class="container">
+  <div class="row">
+
+    <div class="col-md-4 text-center">
+          <div id="recipeCarousel" class="carousel slide align" data-bs-ride="carousel">
+     
+            <div class="carousel-inner" role="listbox">
+      
+              <div class="carousel-item active ">
+                <img src="{% static 'images/homescreen.png' %}" class="img-fluid carousel-img">
+              </div>
+      
+              <div class="carousel-item">
+                <img src="{% static 'images/Audio book.png' %}" class="img-fluid carousel-img">
+              </div>
+      
+              <div class="carousel-item">
+                <img src="{% static 'images/animated book.png' %}" class="img-fluid carousel-img">
+              </div>
+      
+              <div class="carousel-item">
+                <img src="{% static 'images/eBook.png' %}" class="img-fluid carousel-img">
+              </div>
+      
+              <div class="carousel-item ">
+                <img src="{% static 'images/Publishers_ Workspace.png' %}" class="img-fluid carousel-img">
+              </div>
+      
+            </div>
+      
+            <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel"
+             role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+   
+          <!-- <img
+            src="../static/images/homescreen.png"
+            class="img-fluid"
+            alt="..."
+          /> -->
+          <!-- <div style="max-width: 1140" class="container "> -->
+            <hr />
+          <!-- </div> -->
+      </div>
+
+        <div class="col-md-8 d-flex align-items-center">
+          <div class="card-body px-0 px-sm-4">
+            <h2>Explore Our Key Features</h2>
+            <h4><span class="yellow-circle"></span>&nbsp;Animated Content</h4>
+            <p class="card-text body-text body-text-margin-left">
+              Interactive animations that make learning enjoyable and captivating.
+            </p>
+            <h4><span class="yellow-circle"></span>&nbsp;eBooks & Audio Books</h4>
+            <p class="card-text body-text body-text-margin-left">Stories that celebrate African culture and values
+              through rich narratives.
+            </p>
+            <h4><span class="yellow-circle"></span>&nbsp;Language Learning</h4>
+            <p class="card-text body-text body-text-margin-left">Learn African languages like Yorruba, Igbo, Swahili, Twi, and many more.</p>
+            <h4><span class="yellow-circle"></span>&nbsp;Publisher Workspace</h4>
+            <p class="card-text body-text body-text-margin-left">A platform for African publishers to distribute and monetize their works.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<!-- Video Section -->
+<div class="container-fluid mb-5">
+  <div class="container">
+
+  <h2 class="text-center pb-4">See the App in Action</h2>
+    <div class="row video-backgroun rounded-3 video-overlay shadow-lg">
+
+  <video class="rounded-3 px-0 img-fluid" 
+    poster="{% static 'images/image_32.png' %}" controls>
+    <source src="{% static 'images/munakalati.mp4' %}" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  </div>
+</div>
+</div>
+
+<!-- Download Links Section -->
+<div class="container-fluid my-5">
+  <div class="container bg-orange rounded-3">
+    <div class="row align-items-center pb-5 pb-md-0">
+
+      <div class="col-md-4 my-5 d-flex justify-content-center align-items-center ">
+        <img src="{% static 'images/Mobile mockup 2.png' %}" 
+        class="img-fluid w-75 m-auto">
+      </div>
+
+      <div class="col-md-8 d-fle px-5 px-md-0 pe-md-5">
+          <h2 class="text-white">Download Now</h2>
+          <p class="body-text text-white mb-4">
+            Get started with our app today - download now and immerse your child in a world 
+            of fun and culturally rich stories.
+          </p>
+          <a href="#" class="px-0 me-3 btn">
+            <img src="{% static 'images/appstore.png' %}" alt="App Store" 
+            class="store-icon">
+        </a>
+        <a href="#" class="px-0 btn">
+            <img src="{% static 'images/playstore.png' %}" alt="Play Store" 
+            class="store-icon">
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- QR Code Section -->
+<div class="container-fluid my-5">
+  <div class="container rounded-3" style="border: 1px solid #ed552a;">
+    <div class="row my-5 align-items-center">
+
+      <div class="col-md-4 text-center text-md-start ps-0 ps-md-5 pb-5 pb-md-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" 
+         fill="#000" class="bi bi-qr-code" viewBox="0 0 16 16">
+          <path d="M2 2h2v2H2z"/>
+          <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+          <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+          <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+          <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+        </svg>
+      </div>
+
+      <div class="col-md-8 px-3">
+        <h2 class="text-cente text-md-star  px-5 px-md-0">Scan to Download:</h2>
+        <p class=" px-5 px-md-0">Use your mobile device's camera to scan this QR code and download the app instantly. </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- How to Download Section -->
+<div class="container-fluid mt-5 mb-2 py-5" style="background-color: #fac85d;">
+  <div class="container ">
+    <div class="row">
+      <div class="col-sm-8">
+      <h2>How to Download the App</h2>
+      <p class="body-tex" style="color: #414040; font-weight: bold;">
+        Click on the download button or scan the QR code.<br />
+        Open the downloaded app in your mobile device.<br />
+        Folow the on-screen instructions to complete the installation.
+      </p>
+      <p class="body-tex" style="color: #414040; font-weight: bold;">
+        Make sure to allow installations from unknown sources on Android devices if prompted.
+      </p>
+    </div>
+    <div class="col-sm-4 d-flex justify-content-sm-end justify-content-center  align-items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" 
+        width="60" height="60" 
+        fill="#08629E" class="bi bi-save2-fill mt-4 mt-sm-0" viewBox="0 0 16 16"
+      >
+        <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v6h-2a.5.5 0 0 0-.354.854l2.5 2.5a.5.5 0 0 0 .708 0l2.5-2.5A.5.5 0 0 0 10.5 7.5h-2z"/>
+      </svg>
+    </div>
+</div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block footer %} {% include "footer.html" %} {% endblock footer %}

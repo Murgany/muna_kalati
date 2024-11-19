@@ -1,0 +1,251 @@
+{% load static %}
+
+<style>
+  .scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.6s;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    background-color: #f7a072;
+    color: #fff;
+  }
+  .scroll-to-top:hover {
+    background-color: #ed552a;
+  }
+
+  .scroll-to-top::before {
+    content: "";
+    font-size: 20px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .scroll-to-top.active {
+    opacity: 1;
+  }
+</style>
+
+<div class="container-fluid ps- pt-5 footer-container">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div
+        class="col-md-4 col-sm-12 footer-co align-items-center justify-content-center"
+      >
+        <!-- First column -->
+        <div class="muna-kalati-footer mb-5">
+          <img
+            class="img-flui"
+            src="{% static 'images/muna-kalati-logo.svg' %}"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 footer-co">
+        <!-- Second column -->
+        <div class="quick-links">
+          <div class="quick-links-header">Quick Links</div>
+          <div class="links-1">
+            <div class="links-1">
+              <a href="{% url 'index' %}" class="links-1">Home</a>
+            </div>
+
+            <div class="links-1">
+              <a href="{% url 'about_us' %}" class="links-1">About</a>
+            </div>
+
+            <div class="links-1">
+              <a href="{% url 'features' %}" class="links-1">Features</a>
+            </div>
+
+            <div class="links-1">
+              <a href="{% url 'media_and_news' %}" class="links-1"
+                >Media &amp; News</a
+              >
+            </div>
+
+            <a
+              class="links-1"
+              data-bs-toggle="modal"
+              data-bs-target="#subscriptionModal"
+              data-bs-dismiss="modal"
+              style="cursor: pointer"
+              >Explore
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 footer-co">
+        <!-- Third column -->
+        <!-- Content goes here -->
+        <div class="quick-links-">
+          <div class="quick-links-header">Contact</div>
+          <div class="links-">
+            <div class="links-1">
+              <a href="mailto:communication@munakalati.org" class="home links-1"
+                >communication@munakalati.org
+              </a>
+            </div>
+            <div class="links-1">
+              <a href="tel:+233 50 376 3074" class="home links-1"
+                >+233 50 376 3074</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!--Company's Socials-->
+        <!--LinkedIn: https://www.linkedin.com/company/muna-kalati/-->
+        <!--Instagram: https://www.instagram.com/munakalati.asso/-->
+        <!--Facebook: https://www.facebook.com/AssoMunaKalati/.-->
+        <!--Twitter (X): https://x.com/KalatiMuna-->
+
+        <div class="social-containe mt-4">
+          <div class="quick-links">
+            <div class="quick-links-header">Follow Us</div>
+          </div>
+          <div class="">
+            <a
+              class="social-icon"
+              href="https://www.linkedin.com/company/muna-kalati/"
+            >
+              <img
+                class="icon- social-icon"
+                src="{% static 'icons/icon_57_x2.svg' %}"
+              />
+            </a>
+            <a
+              class="social-icon"
+              href="https://www.facebook.com/AssoMunaKalati/."
+            >
+              <img
+                class="icon- social-icon"
+                src="{% static 'icons/icon_11_x2.svg' %}"
+              />
+            </a>
+            <a
+              class="social-icon"
+              href="https://www.instagram.com/munakalati.asso/"
+            >
+              <img
+                class="icon- social-icon"
+                src="{% static 'icons/icon_18_x2.svg' %}"
+              />
+            </a>
+            <a class="social-icon" href="https://x.com/KalatiMuna">
+              <img
+                class="icon- social-icon"
+                src="{% static 'icons/vector_119_x2.svg' %}"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-4 pb-5 footer-containe row justify-content-center">
+      <div class="contact-for col- justify-content-cente">
+        <div class="get-in-touch"></div>
+          <span class="get-in-touch-1"> Get in Touch </span>
+        </div>
+
+        {% if messages %} {% for message in messages %}
+        <div
+          class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3"
+          role="alert"
+        >
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endfor %} {% endif %}
+
+        <form
+          method="post"
+          action="{% url 'contact' %}"
+          class="input-fiel form-group"
+        >
+          {% csrf_token %}
+          <div class="d-flex name-email">
+            <input
+              type="text"
+              name="name"
+              class="form-control w-50 rounded-4 me-3"
+              placeholder="Your Name"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              class="form-control w-50 rounded-4"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <div class="form-group messag">
+            <textarea
+              name="message"
+              class="form-control rounded-4"
+              rows="4"
+              placeholder="Your Message"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="button btn btn-secondar border-0 btn-sm mt-3"
+          >
+            <span class="send-message -button">Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <a href="#" class="scroll-to-top bt btn-s bg-gradient-re btn-dar border-">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-arrow-up"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+        />
+      </svg>
+    </a>
+
+    <div class="row text-center pb-5">
+      <div class="col">
+        <small class="text-center text-white"
+          >&copy; Muna Kalati. All rights reserved |
+          <a href="{% url 'privacy_policy' %}" class="text-white"
+            >Privacy Policy</a
+          >
+          |
+          <a href="{% url 'terms_of_use' %}" class="text-white"
+            >Terms and conditions</a
+          >
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
