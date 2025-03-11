@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -29,6 +30,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
+    
+    # def get_absolute_url(self):
+        # return reverse('category_detail', kwargs={'pk': self.pk})
+
     
 
 class LatestUpdate(models.Model):
@@ -75,6 +80,10 @@ class LatestUpdate(models.Model):
     def get_bullet_points(self):
         # Split the bullet points string by semicolon into a list
         return self.bullet_points.split(";")
+    
+
+    def get_absolute_url(self):
+        return reverse('latest_update_detail', kwargs={'pk': self.pk})
 
 
 class FeaturedNews(models.Model):
@@ -135,6 +144,10 @@ class OpenPosition(models.Model):
 
     def __str__(self):
         return f"{self.job_title} (Posted on {self.posted_on.strftime('%B %d, %Y')})"
+    
+
+    def get_absolute_url(self):
+        return reverse('job_details', kwargs={'pk': self.pk})
 
 
 class ExternalMediaContent(models.Model):
@@ -195,6 +208,10 @@ class PressRelease(models.Model):
             str: The title of the PressRelease object.
         """
         return self.title
+    
+
+    def get_absolute_url(self):
+        return reverse('press_release_detail', kwargs={'pk': self.pk})
     
 
 class SocialMediaPost(models.Model):
@@ -262,3 +279,22 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return f"{self.user.username}'s profile"
+
+
+
+class Review(models.Model):
+    RATING_CHOICES = [(i * 0.5, str(i * 0.5)) for i in range(7, 11)] # 1 to 5 in 0.5 intervals
+
+    name = models.CharField(max_length=100)
+    role = models.CharField(max_length=100)
+    review_text = models.TextField()
+    rating = models.DecimalField(choices=RATING_CHOICES, max_digits=2, decimal_places=1)
+
+    def __str__(self):
+        return f"{self.name} - {self.rating} Stars"
+
+
+
+# google-site-verification=F7BAZujZ3i01ED0wn6ScipWsdOAUzaEVSwqaHL2s6ro
+
+

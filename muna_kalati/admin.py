@@ -14,7 +14,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class LatestUpdateAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'author__username', 'created', 'created_in_gmt')
+    list_display = ('title', 'category', 'author__username', 'created_in_gmt') #, 'created'
     search_fields = ['title', 'author__username']
     list_filter = ['category', 'author__username']
 
@@ -126,6 +126,13 @@ class CustomUserAdmin(UserAdmin):
 #     get_profile_picture.short_description = 'Profile Picture'
 
 # admin.site.register(UserProfile, UserProfileAdmin)
+
+from .models import Review
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('name', 'role', 'rating')
+    list_filter = ('rating',)
 
 
 # Unregister the default User admin

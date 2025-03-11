@@ -14,6 +14,16 @@
     max-height: 1000px; /* A large enough value to fit the content */
     opacity: 1;
   }
+  
+  /* For medium screens and up */
+  @media (min-width: 768px) {
+    .float-md-left {
+      float: left;
+    }
+    .me-md-3 {
+      margin-right: 1rem;
+    }
+  }
 </style>
 
 <section class="container-fluid">
@@ -115,40 +125,6 @@
   </div>
 </section>
 
-<script>
-  function toggleContent() {
-    const extraContent = document.getElementById("extra-content");
-    const readMoreBtnMd = document.getElementById("read-more-btn-md");
-    const readLessBtnLg = document.getElementById("read-less-btn-lg");
-
-    if (extraContent.classList.contains("open")) {
-      // Close the extra content
-      extraContent.classList.remove("open");
-      extraContent.style.maxHeight = "0";
-      readMoreBtnMd.style.display = "block";
-      readLessBtnLg.style.display = "none";
-    } else {
-      // Open the extra content
-      extraContent.classList.add("open");
-      extraContent.style.maxHeight = extraContent.scrollHeight + "px";
-      readMoreBtnMd.style.display = "none";
-      readLessBtnLg.style.display = "block";
-    }
-  }
-</script>
-
-<style>
-  /* For medium screens and up */
-  @media (min-width: 768px) {
-    .float-md-left {
-      float: left;
-    }
-    .me-md-3 {
-      margin-right: 1rem;
-    }
-  }
-</style>
-
 <style>
   @media (max-width: 768px) {
     .carousel-inner .carousel-item > div {
@@ -161,9 +137,6 @@
   }
 
   @media (min-width: 769px) {
-    /* .carousel-inner .carousel-item > div {
-        display: none;
-    } */
     .carousel-inner .carousel-item > div
     /* :first-child */ {
       display: block;
@@ -285,13 +258,13 @@
       </div>
       <div
         id="recipeCarousel"
-        class="carousel slide border-0"
+        class="carousel custom-carousel slide border-0"
         data-bs-ride="carousel"
       >
         <div class="carousel-inner pb-5 pt-4" role="listbox">
           {% for member in team_members %}
           <div
-            class="carousel-item px-2 rounded-3 {% if forloop.first %}active{% endif %}"
+            class="carousel-item custom-carousel-item px-2 rounded-3 {% if forloop.first %}active{% endif %}"
           >
             <div class="card col-md-3 border-0 shadow rounded-3">
               <div class="card-img p-3">
@@ -404,268 +377,141 @@
 <div class="container-fluid pt-5">
   <div class="container justify-content-center">
     <h2>What Our Users Say</h2>
+  
 
-    <!-- Ratings Mobile view -->
+    {% for feedback in ratings %}
     <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-4">
       <div class="col-12">
         <div class="row justify-content-center align-items-center">
           <div class="col-4 p-2 p-sm-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="auto"
-              height="auto"
-              fill="#6fc0f7"
-              class="bi bi-person-circle"
-              viewBox="0 0 16 16"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="auto" fill="#6fc0f7" class="bi bi-person-circle" viewBox="0 0 16 16">
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-              />
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
             </svg>
           </div>
 
-          <div class="col-8">
-            <h5 class="pt-3">Nana Asare, Parent</h5>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 30 30"
-              fill="none"
-              class="bi bi-star-fill"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
-                fill="#D3D3D3"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <p class="pt-3">
-          "My kids absolutely love this app, The stories are so engaging and I
-          love that they can learn about African culture while having fun."
-        </p>
-      </div>
-    </div>
-
-    <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-4">
-      <div class="col-12">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-4 p-3 p-sm-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="auto"
-              height="auto"
-              fill="#6fc0f7"
-              class="bi bi-person-circle"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-              />
-            </svg>
-          </div>
+             <!-- 3.5 to 5 Stars -->
           <div class="col-8 p-2 p-sm-4">
-            <h5 class="pt-3">Amara Diallo, Parent</h5>
-                       
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-half"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <p class="pt-3">
-          "This app has been a game-changer for us. The oint system and rewards
-          have motivated my son to read more, and he's learning so much."
-        </p>
-      </div>
-    </div>
+            <h5 class="pt-3">{{ feedback.name }}, {{ feedback.role }} | {{ feedback.rating }}</h5>
+            
+            <div class="star-rating">
+              {% if feedback.rating == 5 %}
+          
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="gold"
+                    class="bi bi-star-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="gold"
+                    class="bi bi-star-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="gold"
+                    class="bi bi-star-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                    />
+                  </svg>
+                  <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+                </div>
 
-    <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-4">
-      <div class="col-12">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-4 p-3 p-sm-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="auto"
-              height="auto"
-              fill="#6fc0f7"
-              class="bi bi-person-circle"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-              />
-            </svg>
-          </div>
-          <div class="col-8 p-2 p-sm-4">
-            <h5 class="pt-3">Linda Owusu, Teacher</h5>
+              {% endif %}
               
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-          <svg
+              {% if feedback.rating == 4.5 %}
+              <div class="col-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+              <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
@@ -677,491 +523,572 @@
                 d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
               />
             </svg>
+              </div>
+              {% endif %}
+              
+              {% if feedback.rating == 4 %}
+              <div class="col-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                />
+              </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  class="bi bi-star-fill"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                    fill="#D3D3D3"
+                  />
+                </svg>
+              </div>
+              {% endif %}
+              
+              <!-- Half Star -->
+              {% if feedback.rating == 3.5 %}
+              <div class="col-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="gold"
+                  class="bi bi-star-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                  />
+                </svg>
+               
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="gold"
+                class="bi bi-star-half"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
+                />
+              </svg>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  class="bi bi-star-fill"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                    fill="#D3D3D3"
+                  />
+                </svg>
+              </div>
+              {% endif %}
+              
+            </div>
           </div>
         </div>
       </div>
       <div class="col-12">
-        <p class="pt-3">
-          "As a teacher, I find this app incredibly useful. The content is rich
-          and diverse, and the interactive features make it easy to keep
-          students engaged."
-        </p>
+        <p class="pt-3">{{ feedback.review_text }}</p>
       </div>
     </div>
-
-    <div class="w-100 d-sm-none border rounded-3 py-4 px-3 mb-5">
-      <div class="col-12">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-4 p-3 p-sm-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="auto"
-              height="auto"
-              fill="#6fc0f7"
-              class="bi bi-person-circle"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-              />
-            </svg>
-          </div>
-          <div class="col-8 p-2 p-sm-4">
-            <h5 class="pt-3">Akwasi Acquah, Parent</h5>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="gold"
-            class="bi bi-star-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-            />
-          </svg>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 30 30"
-              fill="none"
-              class="bi bi-star-fill"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
-                fill="#D3D3D3"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <p class="pt-3">
-          "Muna Kalati has truly transformed reading for my kids, offering rich,
-          culturally relevant stories that ignite their passion for learning and
-          heritage."
-        </p>
-      </div>
-    </div>
-    <!-- Ratings Mobile view end-->
-
-
-
+  {% endfor %}
+  
+    
+    
     <!-- Ratings: Medium to Large Screens View -->
-    <div
-      class="row d-none d-sm-flex align-items-cente justify-content-between mb-5"
-    >
-      <div class="col-lg-6">
-        <div class="row justify-content-center align-items-cente">
-          <span class="row border mb-3 rounded-3 align-items-center">
-            <div class="col-3 align-items-cente text-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="auto"
-                height="auto"
-                fill="#6fc0f7"
-                class="bi bi-person-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                />
-              </svg>
-            </div>
-            <div class="col-9">
-              <h5 class="pt-3">Nana Asare, Parent</h5>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 30 30"
-                fill="none"
-                class="bi bi-star-fill"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
-                  fill="#D3D3D3"
-                />
-              </svg>
+    <div class="row d-none d-sm-flex align-items-cente justify-content-center mb-5">
+    {% for feedback in ratings %}
 
-              <p class="pt-3">
-                "My kids absolutely love this app, The stories are so engaging
-                and I love that they can learn about African culture while
-                having fun."
-              </p>
-            </div>
-          </span>
-
-          <span class="row border mb-3 rounded-3 align-items-center">
-            <div class="col-3 align-items-cente text-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="auto"
-                height="auto"
-                fill="#6fc0f7"
-                class="bi bi-person-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                />
-              </svg>
-            </div>
-            <div class="col-9">
-              <h5 class="pt-3">Amara Diallo, Parent</h5>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-half"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
-                />
-              </svg>
-
-              <p class="pt-3">
-                "This app has been a game-changer for us. The oint system and
-                rewards have motivated my son to read more, and he's learning so
-                much."
-              </p>
-            </div>
-          </span>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="row justify-content-center align-items-cente">
-          <div class="row border mb-3 rounded-3 align-items-center">
-            <div class="col-3 align-items-cente text-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="auto"
-                height="auto"
-                fill="#6fc0f7"
-                class="bi bi-person-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                />
-              </svg>
-            </div>
-            <div class="col-9">
-              <h5 class="pt-3">Linda Owusu, Teacher</h5>
-              
-              <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
+    <div class="col-lg-6">
+      <div class="row justify-content-center align-items-cente">
+        <span class="row border mb-3 rounded-3 align-items-center">
+          <div class="col-3 align-items-cente text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
+              width="auto"
+              height="auto"
+              fill="#6fc0f7"
+              class="bi bi-person-circle"
               viewBox="0 0 16 16"
             >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
               <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
               />
             </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="gold"
-              class="bi bi-star-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-              />
-            </svg>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-half"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
-                />
-              </svg>
-
-              <p class="pt-3">
-                "As a teacher, I find this app incredibly useful. The content is
-                rich and diverse, and the interactive features make it easy to
-                keep students engaged."
-              </p>
-            </div>
           </div>
+                      <!-- 5 to 3.5 Stars -->
+          <div class="col-9">
+                        <h5 class="pt-3">{{ feedback.name }}, {{ feedback.role }} | {{ feedback.rating }}</h5>
+                        
+                        <div class="star-rating">
+                          {% if feedback.rating == 5 %}
+                      
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="gold"
+                                class="bi bi-star-fill"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                                />
+                              </svg>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="gold"
+                                class="bi bi-star-fill"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                                />
+                              </svg>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="gold"
+                                class="bi bi-star-fill"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                                />
+                              </svg>
+                              <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="gold"
+                            class="bi bi-star-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                            />
+                          </svg>
+                            </div>
+            
+                          {% endif %}
+                          
+                          {% if feedback.rating == 4.5 %}
+                          <div class="col-8">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="gold"
+                            class="bi bi-star-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                            />
+                          </svg>
+                          <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="gold"
+                          class="bi bi-star-half"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
+                          />
+                        </svg>
+                          </div>
+                          {% endif %}
+                          
+                          {% if feedback.rating == 4 %}
+                          <div class="col-8">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="gold"
+                            class="bi bi-star-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                            />
+                          </svg>
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              class="bi bi-star-fill"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                              <path
+                                d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                                fill="#D3D3D3"
+                              />
+                            </svg>
+                          </div>
+                          {% endif %}
+                          
+                          <!-- 3.5 Stars -->
+                          {% if feedback.rating == 3.5 %}
+                          <div class="col-8">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="gold"
+                              class="bi bi-star-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                              />
+                            </svg>
+                           
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            fill="gold"
+                            class="bi bi-star-half"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"
+                            />
+                          </svg>
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 30 30"
+                              fill="none"
+                              class="bi bi-star-fill"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                            >
+                              <path
+                                d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
+                                fill="#D3D3D3"
+                              />
+                            </svg>
+                          </div>
+                          {% endif %}
+                          
+                        </div>
 
-          <div class="row border mb-3 rounded-3 align-items-center">
-            <div class="col-3 align-items-cente text-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="auto"
-                height="auto"
-                fill="#6fc0f7"
-                class="bi bi-person-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-                />
-              </svg>
-            </div>
-            <div class="col-9">
-              <h5 class="pt-3">Akwasi Acquah, Parent</h5>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="gold"
-                class="bi bi-star-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 30 30"
-                fill="none"
-                class="bi bi-star-fill"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="M14.044,1.115C14.333,0.173 15.667,0.173 15.956,1.115L18.6,9.731C18.729,10.151 19.117,10.438 19.556,10.438L28.228,10.438C29.183,10.438 29.595,11.648 28.838,12.23L21.725,17.702C21.395,17.956 21.257,18.389 21.379,18.788L24.072,27.564C24.358,28.496 23.279,29.244 22.507,28.65L15.61,23.344C15.25,23.068 14.75,23.068 14.39,23.344L7.493,28.65C6.721,29.244 5.642,28.496 5.928,27.564L8.621,18.788C8.743,18.389 8.605,17.956 8.275,17.702L1.162,12.23C0.405,11.648 0.817,10.438 1.772,10.438L10.444,10.438C10.883,10.438 11.271,10.151 11.4,9.731L14.044,1.115Z"
-                  fill="#D3D3D3"
-                />
-              </svg>
 
-              <p class="pt-3">
-                "Muna Kalati has truly transformed reading for my kids, offering
-                rich, culturally relevant stories that ignite their passion for
-                learning and heritage."
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              <p class="pt-3">{{ feedback.review_text }}</p>
+                      </div>
+
+                      
+                    </div>
+                  </div>
+                  
+        </span>
+        
+
+    {% endfor %}
+
+  </div> 
+    
+  
     <!-- Ratings: Medium to Large Screens View end-->
   </div>
 </div>
 
+
+<!-- Our Partners -->
+
+
+<style>
+
+
+  @media (min-width: 769px) {
+    .static-carousel  .carousel-inner .carousel-item > div
+    /* :first-child */ {
+      display: block;
+      width: 50%;
+    }
+  }
+  
+</style>
+
+
+<div class="container d-none d-lg-block my-5">
+  <h2>Our Partners</h2>
+  <hr/>
+
+ <div class="row d-flex justify-content-between my-5">
+  <div class="col-3">
+    <img src="{% static 'images/unicef.png' %}" class="d-bloc w- img-fluid" alt="Image 1">
+  </div>
+  <div class="col-3">
+    <img src="{% static 'images/googlenews.png' %}" class="d-bloc w- img-fluid" alt="Image 2">
+  </div>
+  <div class="col-3">
+    <img src="{% static 'images/unesco.png' %}" class="d-bloc img-fluid" alt="Image 3">
+  </div>
+ </div>
+
+ <!-- <span class="col-sm-4 mb-4 mb-sm-0 justify-content-end"> -->
+  <a type="button" 
+  href="mailto:communication@munakalati.org?subject=Partnership&body=Dear Muna Kalati Manager,%0D%0A%0D%0AMy name is [Your Name]. I am writing to [Your Message Here]%0D%0A%0D%0AThank you.%0D%0A%0D%0ABest regards,%0D%0A[Your Name]"
+  class="button">
+  Become A Pertner
+</a>
+<!-- </span> -->
+</div>
+
+<div class="container d-lg-none my-5">
+  <h2>Our Partners</h2>
+  <hr/>
+
+  <div id="staticCarousel" class="carousel static-carousel slide mt-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'images/unicef.png' %}" class="d-block w-100" alt="Image 1">
+      </div>
+
+      <div class="carousel-item">
+        <img src="{% static 'images/googlenews.png' %}" class="d-block w-100" alt="Image 2">
+      </div>
+
+      <div class="carousel-item">
+        <img src="{% static 'images/unesco.png' %}" class="d-block w-100" alt="Image 3">
+      </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#staticCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#staticCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+
 <script>
-  let items = document.querySelectorAll(".carousel .carousel-item");
+  function toggleContent() {
+    const extraContent = document.getElementById("extra-content");
+    const readMoreBtnMd = document.getElementById("read-more-btn-md");
+    const readLessBtnLg = document.getElementById("read-less-btn-lg");
+
+    if (extraContent.classList.contains("open")) {
+      // Close the extra content
+      extraContent.classList.remove("open");
+      extraContent.style.maxHeight = "0";
+      readMoreBtnMd.style.display = "block";
+      readLessBtnLg.style.display = "none";
+    } else {
+      // Open the extra content
+      extraContent.classList.add("open");
+      extraContent.style.maxHeight = extraContent.scrollHeight + "px";
+      readMoreBtnMd.style.display = "none";
+      readLessBtnLg.style.display = "block";
+    }
+  }
+
+  
+  let items = document.querySelectorAll(".custom-carousel .custom-carousel-item");
 
   items.forEach((el) => {
     const minPerSlide = 4;
@@ -1176,6 +1103,23 @@
       next = next.nextElementSibling;
     }
   });
+
+
+
+  let staticItems = document.querySelectorAll("#staticCarousel .carousel-item");
+
+staticItems.forEach((el) => {
+  let next = el.nextElementSibling;
+  for (let i = 1; i < 2; i++) {
+    if (!next) {
+      next = staticItems[0]; // Wrap around to the first item
+    }
+    let cloneChild = next.cloneNode(true);
+    el.appendChild(cloneChild.children[0]);
+    next = next.nextElementSibling;
+  }
+});
+
 </script>
 
 {% endblock content %} 

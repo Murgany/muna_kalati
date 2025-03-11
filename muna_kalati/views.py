@@ -1,6 +1,6 @@
 from django.shortcuts import render,  get_object_or_404, redirect
 from django.views.generic import ListView
-from .models import HeroSection, LatestUpdate, FeaturedNews, OpenPosition, ExternalMediaContent, PressRelease, SocialMediaPost, Category, TeamMember
+from .models import HeroSection, LatestUpdate, FeaturedNews, OpenPosition, ExternalMediaContent, PressRelease, SocialMediaPost, Category, TeamMember, Review
 import time
 from django.db.models import Q
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -8,6 +8,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 from django.contrib import messages
 from .forms import ContactForm
 import re
+from django.http import HttpResponse
+
 
 
 def updates_search(request):
@@ -57,13 +59,35 @@ def index(request):
     Returns:
         HttpResponse: The rendered homepage.
     """
-    hero_section = HeroSection.objects.last()  
-    return render(request, 'index.html', {'hero_section': hero_section})
+    hero_section = HeroSection.objects.last() 
+    context = {
+        'hero_section': hero_section,
+        "meta_title": "Empowering African Children Through Afrocentric Education | Muna Kalati",
+        "meta_description": "Muna Kalati, Muna Kalati offers Afrocentric storybooks, audiobooks, and animated videos in 39 African languages, empowering children to be confident thinkers.",
+   
+    } 
+    return render(request, 'index.html', context)
 
 
 def about_us(requrst):
     team_members = TeamMember.objects.all().order_by('-id')
-    return render(requrst, 'about_us.html', {'team_members': team_members})
+    ratings = Review.objects.all().order_by('-id')[:4]
+    context = {
+        'team_members': team_members,
+        'ratings': ratings,
+        "meta_title": "Empowering African Children Through Afrocentric Education | Muna Kalati",
+        "meta_description": "Muna Kalati, Muna Kalati offers Afrocentric storybooks, audiobooks, and animated videos in 39 African languages, empowering children to be confident thinkers.",
+   
+    }
+    return render(requrst, 'about_us.html', context)
+
+
+# from django.shortcuts import render
+# from math import floor
+
+# def about_us(request):
+#     ratings = Review.objects.all()
+#     return render(request, "about_us.html", {'ratings': ratings})
 
 
 def features(request):
@@ -102,7 +126,7 @@ class LatestUpdateListView(ListView):
     model = LatestUpdate
     template_name = 'latest_update_list.html'
     context_object_name = 'latest_updates'
-    paginate_by = 8  # Number of updates per page, can be customized
+    paginate_by = 2  # Number of updates per page, can be customized
 
     def get_context_data(self, **kwargs):
         # Custom context for further customization in the template
@@ -223,3 +247,15 @@ def contact_view(request):
             messages.success(request, 'Thank you! Your message has been sent.')
             return redirect(request.META.get('HTTP_REFERER', '/'))
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+# from .models import Review
+
+# def reviews(request):
+#     reviews = Review.objects.all()
+#     return render(request, 'reviews.html', {'reviews': reviews})
+
+
+def robots_txt(request):
+    content = "User-agent: *\nDisallow: /admin/\nSitemap: https://www.example.com/sitemap.xml"
+    return HttpResponse(content, content_type="text/plain")

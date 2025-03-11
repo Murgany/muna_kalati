@@ -5,6 +5,21 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
+
+from django.contrib.sitemaps.views import sitemap
+from django.urls import path
+from .sitemaps import LatestUpdateSitemap, PressReleaseSitemap, OpenPositionSitemap, StaticViewSitemap  #CategorySitemap
+
+sitemaps = {
+    'latest_updates': LatestUpdateSitemap,
+    # 'categories': CategorySitemap,
+    'press_releases': PressReleaseSitemap,
+    'open_positions': OpenPositionSitemap,
+    'static': StaticViewSitemap,
+}
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('media_and_news/', views.media_and_news, name='media_and_news'),
@@ -32,5 +47,8 @@ urlpatterns = [
 
     path('contact/', views.contact_view, name='contact'), 
 
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('/images/favicon.ico')))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

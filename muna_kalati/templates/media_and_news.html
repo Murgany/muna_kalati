@@ -107,29 +107,28 @@
     <h2 class="">Featured News</h2> 
 
     <div class="card mb-3 border-0">
-      <div class="row g-0">
+      <div class="row justify-content-between align-items-cente g-0">
         <div class="col-md-4">
-        <a href="{% url 'featured_news_detail' featured_news.pk %}" class="read-more-link">
+         <a href="{% url 'featured_news_detail' featured_news.pk %}" 
+          class="read-more-link">
           <img
             src="{{ featured_news.update.image.url }}"
-            class="img-fluid rounded-4 custom-im"
+            class="img-fluid w-100 rounded-4 custom-im"
             alt="..."
           />
-        </a>
+         </a>
         </div>
         <div class="col-md-8">
           <div class="card-body px-0 px-sm-4">
         <a href="{% url 'featured_news_detail' featured_news.pk %}" 
-           class="read-more-link">
-            <h4>
-              {{ featured_news.update.title| truncatewords:"7" }}
-            </h4>
+           class="read-more-link mt-0 pt-0">
+            <h4>{{ featured_news.update.title| truncatewords:"7" }}</h4>
         </a>
-            <p class="card-text body-text">{{ featured_news.update.content| truncatewords:"30" }}</p>
+            <p class="card-text body-text">{{ featured_news.update.content| truncatewords:"55" }}</p>
             <a
               href="{% url 'featured_news_detail' featured_news.pk %}"
               class="read-more-link"
-              >{{ featured_news.update.category }} · <span class="body-text">{{ featured_news.update.reading_duration }} read</span>
+              >{{ featured_news.update.category }} <span class="body-text">{{ featured_news.update.reading_duration }} read</span>
               </a
             >
           </div>
@@ -179,7 +178,7 @@
         <a
           href="{% url 'latest_update_detail' update.pk %}"
           class="read-more-link"
-          >{{ update.category }} ·<span class="body-text">{{ update.reading_duration }} read</span></a>
+          >{{ update.category }} 路<span class="body-text">{{ update.reading_duration }} read</span></a>
       </div>
     </div>
     {% endfor %}
@@ -207,7 +206,7 @@
           
               <div class="card-img rounded-4">
                 <img src="{{ media.image.url }}"
-                class="img-fluid rounded-" alt="{{ media.title }}">
+                class="img-fluid rounded-" alt="">
               </div>
               
               <a href="{{ media.link }}" target="_blank" 
@@ -217,7 +216,7 @@
               
                   <div class="card-text mb-2 d-flex align-items-center">
                     <img src="{{ media.source_icon.url }}" 
-                    class="img-fluid img-circle" alt="{{ media.source }}"
+                    class="img-fluid img-circle" alt=""
                     style="width: 40px; height: 40px; border-radius: 25px; margin-right: 10px;"> 
                     {{ media.source }}
                   </div>  
@@ -276,7 +275,7 @@
         <p class="body-text">{{ release.content | truncatewords:35 }}</p>
         <a
           href="{% url 'press_release_detail' release.pk %}"
-          class="btn-read-more text-decoration-none"
+          class="button btn-read-mor text-decoration-none"
           >Read Full Release</a
         >
       </div>

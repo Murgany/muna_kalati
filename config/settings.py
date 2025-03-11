@@ -25,21 +25,28 @@ SECRET_KEY = 'django-insecure-mj#$va5zp)+w=+b^wj0m4mxogm+4)o=(u795g(fnqb1a9!tu5#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
     'muna_kalati',
 ]
+
+SITE_ID = 1
+DOMAIN = '127.0.0.1'
+SITE_NAME = 'Muna Kalati'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -129,10 +137,22 @@ import os
 
 STATIC_URL = 'static/'
 # STATIC_ROOT = BASE_DIR / 'static'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = 'media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': { 
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
+
 
 # settings.py
 X_FRAME_OPTIONS = 'ALLOW-FROM http://127.0.0.1:8000/'
@@ -166,7 +186,7 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "img-rec",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": "jazzmin/img/muna-kalati-logo.svg",
+    "site_icon": "jazzmin/img/favicon.svg",
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to MK admin dashboard",
