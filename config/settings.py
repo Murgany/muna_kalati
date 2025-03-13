@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'muna_kalati',
 ]
 
-SITE_ID = 1
-DOMAIN = '127.0.0.1'
+# SITE_ID = 1
+# DOMAIN = '127.0.0.1'
 SITE_NAME = 'Muna Kalati'
 
 MIDDLEWARE = [
