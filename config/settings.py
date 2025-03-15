@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mj#$va5zp)+w=+b^wj0m4mxogm+4)o=(u795g(fnqb1a9!tu5#'
+# SECRET_KEY = 'django-insecure-mj#$va5zp)+w=+b^wj0m4mxogm+4)o=(u795g(fnqb1a9!tu5#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+
+
+SECRET_KEY = os.getenv("SECRET_KEY")  # Replace with a secure key
+DEBUG = os.getenv("DEBUG")
+
+# Allow all hosts for now (update for production)
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+
 
 # Application definition
 
@@ -136,14 +145,15 @@ import os
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR / 'static'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'static'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = 'media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-
+# Use environment variables for sensitive settings
+# Static files configuration for Whitenoise
 STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
