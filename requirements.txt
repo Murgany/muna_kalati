@@ -9,6 +9,9 @@ joblib==1.4.2
 numpy==2.1.2
 packaging==24.2
 pillow==10.4.0
+psycopg2-binary==2.9.8  # Add if using PostgreSQL
+python-decouple==3.8    # Add for environment variable management
+boto3==1.28.0           # Add if interacting with AWS services
 pytz==2024.2
 qrcode==8.0
 requests==2.32.3
