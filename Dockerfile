@@ -1,22 +1,23 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10.12-slim
+# Use a standard Python base image instead of relying on AWS's custom image
+FROM python:3.11-slim
 
-# Set the working directory in the container
-WORKDIR /mkapp
+# Set working directory
+WORKDIR /app/muna_kalati
 
-# Copy the current directory contents into the container
-COPY . /mkapp
+# Install pip and other dependencies
+RUN apt-get update && apt-get install -y python3-pip
 
-# Install any needed packages specified in requirements.txt and collect static files
-RUN pip install --no-cache-dir -r requirements.txt && python manage.py collectstatic --noinput
+# Copy requirements file
+COPY muna_kalati/requirements.txt .
 
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Define environment variable for AWS App Runner
-ENV PORT=8080
+# Copy the entire project
+COPY muna_kalati/ .
 
-# Run the Django application
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+# Expose port (default for App Runner is 8080, but you can configure it)
+EXPOSE 8000
 
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Start application
+CMD gunicorn config.wsgi:application --bind 0.0.0.0:8000
