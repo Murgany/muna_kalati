@@ -26,14 +26,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
+
+# pip install awsebcli --upgrade --user
+# eb init -p python-3.6 my-django-app --region us-west-2
+# eb create my-django-env
+# eb open
+# eb deploy
+# eb terminate my-django-env
 
 SECRET_KEY = os.getenv("SECRET_KEY")  # Replace with a secure key
 DEBUG = os.getenv("DEBUG")
 
 # Allow all hosts for now (update for production)
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 
 
 # Application definition
@@ -65,7 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -154,17 +161,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Use environment variables for sensitive settings
 # Static files configuration for Whitenoise
-STORAGES = {
-    'default': {
-        'BACKEND': 'django.core.files.storage.FileSystemStorage',
-    },
-    'staticfiles': { 
-        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
-    },
-}
+# STORAGES = {
+#     'default': {
+#         'BACKEND': 'django.core.files.storage.FileSystemStorage',
+#     },
+#     'staticfiles': { 
+#         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+#     },
+# }
 
 
 # settings.py
+# X_FRAME_OPTIONS = 'ALLOW-FROM http://127.0.0.1:8000/'# 
 X_FRAME_OPTIONS = 'ALLOW-FROM http://127.0.0.1:8000/'
 
 # Default primary key field type
